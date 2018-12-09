@@ -28,6 +28,7 @@ class Upload extends AbstractController
         switch ($action) {
             case 'config':
                 $result = $CONFIG;
+
                 break;
             /* 上传图片 */
             case 'uploadimage':
@@ -38,6 +39,7 @@ class Upload extends AbstractController
             /* 上传文件 */
             case 'uploadfile':
                 $result = $this->actionUpload($CONFIG);
+
                 break;
 
             /* 列出图片 */
@@ -45,15 +47,18 @@ class Upload extends AbstractController
             /* 列出文件 */
             case 'listfile':
                 $result = $this->listFile($CONFIG);
+
                 break;
 
             /* 抓取远程文件 */
             case 'catchimage':
                 $result = $this->actionCrawler($CONFIG);
+
                 break;
 
             default:
                 $result = ['state' => '请求地址出错'];
+
                 break;
         }
 
@@ -79,27 +84,27 @@ class Upload extends AbstractController
     {
         set_time_limit(0);
         /* 上传配置 */
-        $config = array(
+        $config = [
             'pathFormat' => $CONFIG['catcherPathFormat'],
             'maxSize' => $CONFIG['catcherMaxSize'],
             'allowFiles' => $CONFIG['catcherAllowFiles'],
             'oriName' => 'remote.png',
-        );
+        ];
         $fieldName = $CONFIG['catcherFieldName'];
         /* 抓取远程图片 */
-        $list = array();
+        $list = [];
         $source = $this->request->param($fieldName);
         foreach ($source as $imgUrl) {
             $item = new Uploader($imgUrl, $config, 'remote');
             $info = $item->getFileInfo();
-            array_push($list, array(
+            array_push($list, [
                 'state' => $info['state'],
                 'url' => $info['url'],
                 'size' => $info['size'],
                 'title' => htmlspecialchars($info['title']),
                 'original' => htmlspecialchars($info['original']),
                 'source' => htmlspecialchars($imgUrl),
-            ));
+            ]);
         }
         /* 返回抓取数据 */
         return ['state' => count($list) ? 'SUCCESS' : 'ERROR', 'list' => $list];
@@ -117,39 +122,43 @@ class Upload extends AbstractController
         $base64 = 'upload';
         switch (htmlspecialchars($this->request->get('action'))) {
             case 'uploadimage':
-                $config = array(
+                $config = [
                     'pathFormat' => $CONFIG['imagePathFormat'],
                     'maxSize' => $CONFIG['imageMaxSize'],
                     'allowFiles' => $CONFIG['imageAllowFiles'],
-                );
+                ];
                 $fieldName = $CONFIG['imageFieldName'];
+
                 break;
             case 'uploadscrawl':
-                $config = array(
+                $config = [
                     'pathFormat' => $CONFIG['scrawlPathFormat'],
                     'maxSize' => $CONFIG['scrawlMaxSize'],
                     'allowFiles' => $CONFIG['scrawlAllowFiles'],
                     'oriName' => 'scrawl.png',
-                );
+                ];
                 $fieldName = $CONFIG['scrawlFieldName'];
                 $base64 = 'base64';
+
                 break;
             case 'uploadvideo':
-                $config = array(
+                $config = [
                     'pathFormat' => $CONFIG['videoPathFormat'],
                     'maxSize' => $CONFIG['videoMaxSize'],
                     'allowFiles' => $CONFIG['videoAllowFiles'],
-                );
+                ];
                 $fieldName = $CONFIG['videoFieldName'];
+
                 break;
             case 'uploadfile':
             default:
-                $config = array(
+                $config = [
                     'pathFormat' => $CONFIG['filePathFormat'],
                     'maxSize' => $CONFIG['fileMaxSize'],
                     'allowFiles' => $CONFIG['fileAllowFiles'],
-                );
+                ];
                 $fieldName = $CONFIG['fileFieldName'];
+
                 break;
         }
         /* 生成上传实例对象并完成上传 */
@@ -180,6 +189,7 @@ class Upload extends AbstractController
                 $allowFiles = $CONFIG['fileManagerAllowFiles'];
                 $listSize = $CONFIG['fileManagerListSize'];
                 $path = $CONFIG['fileManagerListPath'];
+
                 break;
             /* 列出图片 */
             case 'listimage':
@@ -188,7 +198,7 @@ class Upload extends AbstractController
                 $listSize = $CONFIG['imageManagerListSize'];
                 $path = $CONFIG['imageManagerListPath'];
         }
-        $allowFiles = substr(str_replace('.', '|', join('', $allowFiles)), 1);
+        $allowFiles = substr(str_replace('.', '|', implode('', $allowFiles)), 1);
 
         /* 获取参数 */
         $size = isset($_GET['size']) ? htmlspecialchars($_GET['size']) : $listSize;
@@ -199,17 +209,17 @@ class Upload extends AbstractController
         $path = $_SERVER['DOCUMENT_ROOT'].('/' == substr($path, 0, 1) ? '' : '/').$path;
         $files = $this->getfiles($path, $allowFiles);
         if (!count($files)) {
-            return json_encode(array(
+            return json_encode([
                 'state' => 'no match file',
-                'list' => array(),
+                'list' => [],
                 'start' => $start,
                 'total' => count($files),
-            ));
+            ]);
         }
 
         /* 获取指定范围的列表 */
         $len = count($files);
-        for ($i = min($end, $len) - 1, $list = array(); $i < $len && $i >= 0 && $i >= $start; --$i) {
+        for ($i = min($end, $len) - 1, $list = []; $i < $len && $i >= 0 && $i >= $start; --$i) {
             $list[] = $files[$i];
         }
         //倒序
@@ -234,7 +244,7 @@ class Upload extends AbstractController
      *
      * @return array
      */
-    private function getfiles($path, $allowFiles, &$files = array())
+    private function getfiles($path, $allowFiles, &$files = [])
     {
         if (!is_dir($path)) {
             return null;
@@ -252,10 +262,10 @@ class Upload extends AbstractController
                     self::getfiles($path2, $allowFiles, $files);
                 } else {
                     if (preg_match("/\.(".$allowFiles.')$/i', $file)) {
-                        $files[] = array(
+                        $files[] = [
                             'url' => substr($path2, strlen($_SERVER['DOCUMENT_ROOT'])),
                             'mtime' => filemtime($path2),
-                        );
+                        ];
                     }
                 }
             }
@@ -375,17 +385,28 @@ class Upload extends AbstractController
 class Uploader
 {
     private $fileField; //文件域名
+
     private $file; //文件上传对象
+
     private $base64; //文件上传对象
+
     private $config; //配置信息
+
     private $oriName; //原始文件名
+
     private $fileName; //新文件名
+
     private $fullName; //完整文件名,即从当前配置目录开始的URL
+
     private $filePath; //完整文件名,即从当前配置目录开始的URL
+
     private $fileSize; //文件大小
+
     private $fileType; //文件类型
+
     private $stateInfo; //上传状态信息,
-    private $stateMap = array( //上传状态映射表，国际化用户需考虑此处数据的国际化
+
+    private $stateMap = [ //上传状态映射表，国际化用户需考虑此处数据的国际化
         'SUCCESS', //上传成功标记，在UEditor中内不可改变，否则flash判断会出错
         '文件大小超出 upload_max_filesize 限制',
         '文件大小超出 MAX_FILE_SIZE 限制',
@@ -407,7 +428,7 @@ class Uploader
         'ERROR_HTTP_CONTENTTYPE' => '链接contentType不正确',
         'INVALID_URL' => '非法 URL',
         'INVALID_IP' => '非法 IP',
-    );
+    ];
 
     /**
      * 构造函数.
@@ -485,7 +506,7 @@ class Uploader
             $this->stateInfo = $this->getStateInfo('ERROR_CREATE_DIR');
 
             return;
-        } elseif (!is_writeable($dirname)) {
+        } elseif (!is_writable($dirname)) {
             $this->stateInfo = $this->getStateInfo('ERROR_DIR_NOT_WRITEABLE');
 
             return;
@@ -509,7 +530,7 @@ class Uploader
     private function upBase64()
     {
         $base64Data = $_POST[$this->fileField];
-        $img = base64_decode($base64Data);
+        $img = base64_decode($base64Data, true);
 
         $this->oriName = $this->config['oriName'];
         $this->fileSize = strlen($img);
@@ -531,7 +552,7 @@ class Uploader
             $this->stateInfo = $this->getStateInfo('ERROR_CREATE_DIR');
 
             return;
-        } elseif (!is_writeable($dirname)) {
+        } elseif (!is_writable($dirname)) {
             $this->stateInfo = $this->getStateInfo('ERROR_DIR_NOT_WRITEABLE');
 
             return;
@@ -595,7 +616,7 @@ class Uploader
         }
         //格式验证(扩展名验证和Content-Type验证)
         $fileType = strtolower(strrchr($imgUrl, '.'));
-        if (!in_array($fileType, $this->config['allowFiles']) || !isset($heads['Content-Type']) || !stristr($heads['Content-Type'], 'image')) {
+        if (!in_array($fileType, $this->config['allowFiles'], true) || !isset($heads['Content-Type']) || !stristr($heads['Content-Type'], 'image')) {
             $this->stateInfo = $this->getStateInfo('ERROR_HTTP_CONTENTTYPE');
 
             return;
@@ -604,9 +625,9 @@ class Uploader
         //打开输出缓冲区并获取远程图片
         ob_start();
         $context = stream_context_create(
-            array('http' => array(
+            ['http' => [
                 'follow_location' => false, // don't follow redirects
-            ))
+            ]]
         );
         readfile($imgUrl, false, $context);
         $img = ob_get_contents();
@@ -633,7 +654,7 @@ class Uploader
             $this->stateInfo = $this->getStateInfo('ERROR_CREATE_DIR');
 
             return;
-        } elseif (!is_writeable($dirname)) {
+        } elseif (!is_writable($dirname)) {
             $this->stateInfo = $this->getStateInfo('ERROR_DIR_NOT_WRITEABLE');
 
             return;
@@ -726,7 +747,7 @@ class Uploader
     {
         $fullname = $this->fullName;
         $rootPath = env('root_path');
-        if (in_array(substr($rootPath, -1, 1), array('\\', '/'))) {
+        if (in_array(substr($rootPath, -1, 1), ['\\', '/'], true)) {
             $rootPath = substr($rootPath, 0, -1);
         }
 
@@ -744,7 +765,7 @@ class Uploader
      */
     private function checkType()
     {
-        return in_array($this->getFileExt(), $this->config['allowFiles']);
+        return in_array($this->getFileExt(), $this->config['allowFiles'], true);
     }
 
     /**
@@ -764,13 +785,13 @@ class Uploader
      */
     public function getFileInfo()
     {
-        return array(
+        return [
             'state' => $this->stateInfo,
             'url' => $this->fullName,
             'title' => $this->fileName,
             'original' => $this->oriName,
             'type' => $this->fileType,
             'size' => $this->fileSize,
-        );
+        ];
     }
 }
