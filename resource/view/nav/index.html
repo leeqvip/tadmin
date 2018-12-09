@@ -1,0 +1,85 @@
+{extend name="layout/base" /} {block name="main"}
+<div class="row-content am-cf">
+    <div class="row">
+        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+            <div class="widget am-cf">
+                <div class="widget-head am-cf">
+                    <div class="widget-title am-fl">导航菜单</div>
+                    <div class="widget-function am-fr">
+                        <a href="javascript:location.reload();" class="am-icon-refresh" title="刷新"></a>
+                    </div>
+                </div>
+                <div class="widget-body  widget-body-lg am-fr">
+                    <div class="am-u-sm-12 am-u-md-6 am-u-lg-6">
+                        <div class="am-form-group">
+                            <div class="am-btn-toolbar">
+                                <div class="am-btn-group am-btn-group-xs">
+                                    <a href="{:url('tadmin.nav.edit')}" class="am-btn am-btn-default am-btn-success"><span class="am-icon-plus"></span> 新增</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="am-u-sm-12 am-scrollable-horizontal ">
+                        <table width="100%" class="am-table am-table-compact tpl-table-black " id="example-r">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>打开方式</th>
+                                    <th>导航名称</th>
+                                    <th>打开地址</th>
+                                    <th>排序</th>
+                                    <th>时间</th>
+                                    <th>状态</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {foreach $navs as $nav}
+                                <tr class="gradeX">
+                                    <td>{$nav.id}</td>
+                                    <td><span class="nav-target am-badge am-radius" data-target="{$nav.target}">{$nav.target_text}</span></td>
+                                    <td>{$nav.prefix}{$nav.title}</td>
+                                    <td><code>{$nav.uri}</code></td>
+                                    <td><span class="am-badge am-badge-success am-radius">{$nav.sort}</span></td>
+                                    <td>{$nav.created_at}</td>
+                                    <td><span class="show-status" data-status="{$nav.status}"><i class="am-icon-circle"></i></span></td>
+                                    <td>
+                                        <div class="tpl-table-black-operation">
+                                            <a href="{:url('tadmin.nav.edit')}?id={$nav.id}">
+                                                    <i class="am-icon-pencil"></i> 编辑
+                                                </a>
+                                            <a href="{:url('tadmin.nav.delete')}?id={$nav.id}" class="tpl-table-black-operation-del">
+                                                    <i class="am-icon-trash"></i> 删除
+                                                </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {/foreach}
+                                <!-- more data -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
+{block name="footer"}
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(".nav-target").each(function(index, el) {
+            var dataTarget = $(this).attr('data-target')
+            if(dataTarget == '_self'){
+                $(this).addClass('am-badge-primary');
+            }else if(dataTarget == '_blank'){
+                $(this).addClass('am-badge-danger');
+            }else if(dataTarget == '_parent'){
+                $(this).addClass('am-badge-secondary');
+            }else if(dataTarget == '_top'){
+                $(this).addClass('am-badge-warning');
+            }
+        });
+    });
+</script>
+{/block}

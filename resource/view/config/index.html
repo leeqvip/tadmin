@@ -1,0 +1,63 @@
+{extend name="layout/base" /} {block name="main"}
+<div class="row-content am-cf">
+    <div class="row">
+        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+            <div class="widget am-cf">
+                <div class="widget-head am-cf">
+                    <div class="widget-title am-fl">系统配置</div>
+                    <div class="widget-function am-fr">
+                        <a href="javascript:location.reload();" class="am-icon-refresh" title="刷新"></a>
+                    </div>
+                </div>
+                <div class="widget-body  widget-body-lg am-fr">
+                    <div class="am-u-sm-12 am-u-md-6 am-u-lg-6">
+                        <div class="am-form-group">
+                            <div class="am-btn-toolbar">
+                                <div class="am-btn-group am-btn-group-xs">
+                                    <a href="{:url('tadmin.config.add')}" class="am-btn am-btn-default am-btn-success"><span class="am-icon-plus"></span> 新增</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="am-u-sm-12 am-scrollable-horizontal ">
+                        <div class="am-tabs" data-am-tabs>
+                            <ul class="am-tabs-nav am-nav am-nav-tabs">
+                                <li class="am-active"><a href="#tab1">基础配置</a></li>
+                            </ul>
+                            <div class="am-tabs-bd">
+                                <div class="am-tab-panel am-fade am-in am-active" id="tab1">
+                                    <form class="am-form am-form-horizontal tpl-form-border-form" method="post">
+                                    	{foreach $configs as $config}
+                                        <div class="am-form-group">
+                                            <label for="doc-ipt-3" class="am-u-sm-2 am-form-label">{$config.name}<span class="tpl-form-line-small-title">（{$config.key}）</span></label>
+                                            <div class="am-u-sm-10">
+                                            	{switch $config.model}
+													{case text}
+                                                	<input name="config[{$config.id}][value]" type="text" id="doc-ipt-3" value="{$config.value}" >
+                                                	{/case}
+                                                	{case textarea}
+                                                	<textarea name="config[{$config.id}][value]" class="" rows="3">{$config.value}</textarea>
+                                                	{/case}
+                                                	{default /}
+                                                {/switch}
+                                                <input name="config[{$config.id}][id]" type="hidden" value="{$config.id}">
+                                                <small>{$config.desc}</small>
+                                            </div>
+                                        </div>
+										{/foreach}
+                                        <div class="am-form-group">
+                                            <div class="am-u-sm-10 am-u-sm-offset-2">
+                                                <button type="submit" class="am-btn am-btn-primary">保存</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}

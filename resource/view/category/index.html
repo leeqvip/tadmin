@@ -1,0 +1,81 @@
+{extend name="layout/base" /} {block name="main"}
+<div class="row-content am-cf">
+    <div class="row">
+        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+            <div class="widget am-cf">
+                <div class="widget-head am-cf">
+                    <div class="widget-title am-fl">栏目列表</div>
+                    <div class="widget-function am-fr">
+                        <a href="javascript:location.reload();" class="am-icon-refresh" title="刷新"></a>
+                    </div>
+                </div>
+                <div class="widget-body  widget-body-lg am-fr">
+                    <div class="am-u-sm-12 am-u-md-6 am-u-lg-6">
+                        <div class="am-form-group">
+                            <div class="am-btn-toolbar">
+                                <div class="am-btn-group am-btn-group-xs">
+                                    <a href="{:url('tadmin.category.edit')}" class="am-btn am-btn-default am-btn-success"><span class="am-icon-plus"></span> 新增</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="am-u-sm-12 am-scrollable-horizontal ">
+                        <table width="100%" class="am-table am-table-compact tpl-table-black " id="example-r">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>类型</th>
+                                    <th>栏目名称</th>
+                                    <th>排序</th>
+                                    <th>时间</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {foreach $categorys as $category}
+                                <tr class="gradeX">
+                                    <td>{$category.id}</td>
+                                    <td><span class="cate-type am-badge am-radius" data-type="{$category.type}">{$category.type_text}</span></td>
+                                    <td>{$category.prefix}{$category.name}</td>
+                                    <td><span class="am-badge am-badge-success am-radius">{$category.sort}</span></td>
+                                    <td>{$category.created_at}</td>
+                                    <td>
+                                        <div class="tpl-table-black-operation">
+                                            <a href="{:url('tadmin.category.edit')}?id={$category.id}">
+                                                    <i class="am-icon-pencil"></i> 编辑
+                                                </a>
+                                            <a href="{:url('tadmin.category.delete')}?id={$category.id}" class="tpl-table-black-operation-del">
+                                                    <i class="am-icon-trash"></i> 删除
+                                                </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {/foreach}
+                                <!-- more data -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
+{block name="footer"}
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(".cate-type").each(function(index, el) {
+            var dataType = $(this).attr('data-type')
+            if(dataType == 'list'){
+                $(this).addClass('am-badge-primary');
+            }else if(dataType == 'list-img'){
+                $(this).addClass('am-badge-secondary');
+            }else if(dataType == 'single'){
+                $(this).addClass('am-badge-danger');
+            }else if(dataType == 'topic'){
+                $(this).addClass('am-badge-warning');
+            }
+        });
+    });
+</script>
+{/block}

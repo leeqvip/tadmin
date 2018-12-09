@@ -1,0 +1,9 @@
+preset: Symfony
+risky: true
+enabled:
+  - strict_param
+  - short_array_syntax
+finder:
+  exclude:
+    - vendor
+  name: "*.php"

@@ -1,0 +1,71 @@
+{extend name="layout/base" /} {block name="main"}
+<div class="row-content am-cf">
+    <div class="row">
+        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+            <div class="widget am-cf">
+                <div class="widget-head am-cf">
+                    <div class="widget-title am-fl">管理员列表</div>
+                    <div class="widget-function am-fr">
+                        <a href="javascript:location.reload();" class="am-icon-refresh" title="刷新"></a>
+                    </div>
+                </div>
+                <div class="widget-body  widget-body-lg am-fr">
+                    <div class="am-u-sm-12 am-u-md-6 am-u-lg-6">
+                        <div class="am-form-group">
+                            <div class="am-btn-toolbar">
+                                <div class="am-btn-group am-btn-group-xs">
+                                    <a href="{:url('tadmin.auth.adminer.edit')}" class="am-btn am-btn-default am-btn-success"><span class="am-icon-plus"></span> 新增</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="am-u-sm-12 am-scrollable-horizontal ">
+                        <table width="100%" class="am-table am-table-compact tpl-table-black " id="example-r">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>账号</th>
+                                    <th>角色</th>
+                                    <th>创建时间</th>
+                                    <th>最近登录</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {foreach $adminers as $adminer}
+                                <tr class="gradeX">
+                                    <td>{$adminer.id}</td>
+                                    <td>{$adminer.admin_account}</td>
+                                    <td>
+                                        {foreach $adminer->roles as $role}
+                                        <span class="am-badge am-badge-success">{$role.name}</span> {/foreach}
+                                    </td>
+                                    <td>{$adminer.created_at}</td>
+                                    <td>{$adminer.login_at}</td>
+                                    <td>
+                                        <div class="tpl-table-black-operation">
+                                            <a href="{:url('tadmin.auth.adminer.edit')}?id={$adminer.id}">
+                                                    <i class="am-icon-pencil"></i> 编辑
+                                                </a> {if $adminer.id != 1}
+                                            <a href="{:url('tadmin.auth.adminer.delete')}?id={$adminer.id}" class="tpl-table-black-operation-del">
+                                                    <i class="am-icon-trash"></i> 删除
+                                                </a> {/if}
+                                        </div>
+                                    </td>
+                                </tr>
+                                {/foreach}
+                                <!-- more data -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="am-u-lg-12 am-cf">
+                        <div class="am-fr">
+                            {$adminers|raw}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}

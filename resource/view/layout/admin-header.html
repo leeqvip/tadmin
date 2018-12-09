@@ -1,0 +1,35 @@
+<header class="admin-header">
+    <div class="am-fl tpl-header-logo am-vertical-align">          
+        <div class="am-header-title am-vertical-align-middle"><b>T</b>admin</div>
+    </div>
+    <div class="tpl-header-fluid">
+        <div class="am-fl tpl-header-switch-button am-icon-list">
+            <span></span>
+        </div>
+        <div class="am-fr tpl-header-navbar">
+            <ul>
+                <li class="am-text-sm tpl-header-navbar-welcome">
+                    <a href="javascript:;">欢迎你, <span>{$adminer.admin_account}</span> ！</a>
+                </li>
+                <li class="am-text-sm">
+                    <a href="/" target="_blank"><span class="am-icon-desktop"></span> 主页</a>
+                </li>
+                <li class="am-text-sm">
+                    <a href="{:url('tadmin.auth.passport.logout')}"><span class="am-icon-sign-out"></span> 退出</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
+<div class="tpl-skiner">
+    <div class="tpl-skiner-toggle am-icon-cog" title="风格切换"></div>
+    <div class="tpl-skiner-content">
+        <div class="tpl-skiner-content-title">
+            选择主题
+        </div>
+        <div class="tpl-skiner-content-bar">
+            <span class="skiner-color skiner-white" data-color="theme-white"></span>
+            <span class="skiner-color skiner-black" data-color="theme-black"></span>
+        </div>
+    </div>
+</div>

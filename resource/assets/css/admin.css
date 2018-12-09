@@ -1,0 +1,20 @@
+.admin-page-header{padding: 20px;padding-bottom: 0px;}
+.tpl-index-settings-button{text-align: right;}
+
+.image-title-group img{float: left;margin-right: 10px;height: 32px;width: 32px;}
+.image-title-group p{margin: 0px;}
+.tpl-pagination li a{border-radius: 0px !important;}
+div.content-wrapper{min-height: auto}
+
+.admin-footer{position: absolute;width: 100%;left: 0px;bottom: 0px;}
+
+.tpl-skiner{bottom: 0px;top: auto;}
+.am-header-title{color: #0e90d2;font-size: 2.1rem}
+.am-list{font-size: 1.4rem;}
+
+.theme-black .admin-footer .am-footer-default{background: #282d2f;}
+.theme-black .am-panel{background: #4b5357;border:1px solid #33393c;}
+.theme-black .am-panel .am-panel-hd{background: #5d6468;color: #fff;border-color: #33393c}
+.theme-black .am-thumbnail{background-color:#4b5357;border:1px solid #33393c;}
+.theme-black .am-list>li{background-color: #4b5357;border-color: #666d70;}
+.theme-black code{background-color: #3a4144}

@@ -1,0 +1,103 @@
+{extend name="layout/base" /} {block name="main"}
+<div class="row-content am-cf">
+    <div class="row am-cf">
+        <div class="am-u-sm-12 am-u-md-8">
+            <div class="widget am-cf">
+                <div class="widget-head am-cf">
+                    <div class="widget-title am-fl">操作记录</div>
+                    <div class="widget-function am-fr">
+                        <a href="{:url('tadmin.auth.log')}" class="am-icon-list"></a>
+                    </div>
+                </div>
+                <div class="widget-body-md widget-body am-fr">
+                    <ul class="am-list am-list-static">
+                        {foreach $logs as $log}
+                        <li class="am-text-truncate">
+                            <div>
+                            <span class="am-badge am-badge-warning am-radius">{$log.adminer.admin_account}</span>
+                            &nbsp;于&nbsp;{:date('m月d日 H:i',strtotime($log.created_at))}&nbsp;访问了&nbsp;<code>【{$log.method}】{$log.path}</code>，终端<code>{$log.browser}</code>，IP地址<code>{$log.ip}</code>。
+                            </div>
+                        </li>
+                        {/foreach}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="am-u-sm-12 am-u-md-4">
+            <div class="widget am-cf">
+                <div class="widget-head am-cf">
+                    <div class="widget-title am-fl">系统信息</div>
+                    <div class="widget-function am-fr">
+                        
+                    </div>
+                </div>
+                <div class="widget-body widget-body-md am-fr">
+                    <ul class="am-list am-list-static">
+                        <li>
+                            <i class="am-icon-flag"></i>
+                            Tadmin版本：{$systemInfo.appVersion}
+                        </li>
+                        <li>
+                            <i class="am-icon-windows"></i>
+                            操作系统：{$systemInfo.os}
+                        </li>
+                        <li>
+                            <i class="am-icon-inbox"></i>
+                            运行环境：{$systemInfo.serverSoftware}、{$systemInfo.phpVersion}
+                        </li>
+                        <li>
+                            <i class="am-icon-clock-o"></i>
+                            服务器时间：{$systemInfo.systemDate}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row am-cf">
+        <div class="am-u-sm-12 am-u-md-12 am-u-lg-4 widget-margin-bottom-lg ">
+            <div class="tpl-user-card am-text-center widget-body-lg">
+                <div class="tpl-user-card-title">
+                    {$adminer.admin_account}
+                </div>
+                <div class="achievement-subheading">
+                    {foreach $adminer->roles as $role}
+                                        <span class="am-badge am-badge-warning">{$role.name}</span> {/foreach}
+                </div>
+                <img class="achievement-image" src="__TADMIN_ASSETS__/img/user07.png" alt="">
+                <div class="achievement-description">
+                    最近登录
+                    <strong>{$adminer.login_at}</strong>，登录IP为
+                    <strong>{$adminer.login_ip}</strong>。
+                </div>
+            </div>
+        </div>
+        <div class="am-u-sm-12 am-u-md-12 am-u-lg-8 widget-margin-bottom-lg">
+            <div class="widget am-cf widget-body-lg">
+                <div class="widget-body  am-fr">
+                    <div class="am-scrollable-horizontal ">
+                        <table width="100%" class="am-table am-table-compact am-text-nowrap tpl-table-black " id="example-r">
+                            <thead>
+                                <tr>
+                                    <th>最新发布</th>
+                                    <th>作者</th>
+                                    <th>时间</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {foreach $latestRelease as $article}
+                                <tr class="gradeX">
+                                    <td>{$article.title}</td>
+                                    <td><span class="am-badge am-badge-success">{$article.category.name}</span></td>
+                                    <td>{$article.created_at}</td>
+                                </tr>
+                                {/foreach}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}

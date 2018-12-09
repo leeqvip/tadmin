@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{include file="layout/meta" /}
+</head>
+<body data-type="index">
+    <script src="__TADMIN_ASSETS__/js/theme.js"></script>
+    <div class="am-g tpl-g">
+        <!-- 头部 -->
+        {include file="layout/admin-header" /}
+        {include file="widget/admin-left" /}
+        <div class="tpl-content-wrapper content-wrapper">
+            {block name="main"}
+            {/block}
+            {include file="layout/admin-footer" /}
+        </div>
+    </div>
+{include file="layout/footer" /}
+{block name="footer"}{/block}
+</body>
+</html>

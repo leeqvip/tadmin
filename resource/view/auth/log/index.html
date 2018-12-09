@@ -1,0 +1,71 @@
+{extend name="layout/base" /} {block name="main"}
+<div class="row-content am-cf">
+    <div class="row">
+        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+            <div class="widget am-cf">
+                <div class="widget-head am-cf">
+                    <div class="widget-title am-fl">操作日志</div>
+                    <div class="widget-function am-fr">
+                        <a href="javascript:location.reload();" class="am-icon-refresh" title="刷新"></a>
+                    </div>
+                </div>
+                <div class="widget-body  widget-body-lg am-fr">
+                    <div class="am-u-sm-12 am-scrollable-horizontal ">
+                        <table width="100%" class="am-table am-table-compact tpl-table-black " id="example-r">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>用户名</th>
+                                    <th>方法</th>
+                                    <th>路径</th>
+                                    <th>参数</th>
+                                    <th>IP</th>
+                                    <th>终端</th>
+                                    <th>时间</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {foreach $logs as $log}
+                                <tr class="gradeX">
+                                    <td>{$log.id}</td>
+                                    <td>{$log.adminer.admin_account}</td>
+                                    <td><span class="log-method am-badge am-radius" data-method="{$log.method}">{$log.method}</span></td>
+                                    <td>{$log.path}</td>
+                                    <td><div class="am-text-truncate" style="width: 250px" title="{$log.input}">{$log.input}</div></td>
+                                    <td>{$log.ip}</td>
+                                    <td>{$log.browser}</td>
+                                    <td>{$log.created_at}</td>
+                                </tr>
+                                {/foreach}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="am-u-lg-12 am-cf">
+                        <div class="am-fr">
+                            {$logs|raw}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
+{block name="footer"}
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(".log-method").each(function(index, el) {
+            var dataMethod = $(this).attr('data-method')
+            if(dataMethod == 'GET'){
+                $(this).addClass('am-badge-success');
+            }else if(dataMethod == 'POST'){
+                $(this).addClass('am-badge-secondary');
+            }else if(dataMethod == 'PUT'){
+                $(this).addClass('am-badge-danger');
+            }else if(dataMethod == 'DELETE'){
+                $(this).addClass('am-badge-warning');
+            }
+        });
+    });
+</script>
+{/block}

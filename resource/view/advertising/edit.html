@@ -1,0 +1,57 @@
+{extend name="layout/base" /} {block name="main"}
+<div class="row-content am-cf">
+    <div class="row">
+        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+            <div class="widget am-cf">
+                <div class="widget-head am-cf">
+                    <div class="widget-title am-fl">添加/编辑</div>
+                    <div class="widget-function am-fr">
+                        <a href="{:url('tadmin.advertising.block')}" class="am-icon-list" title="列表"></a>
+                    </div>
+                </div>
+                <div class="widget-body am-fr">
+                    <form class="am-form tpl-form-border-form" method="post"  enctype="multipart/form-data" data-am-validator>
+                        <div class="am-form-group">
+                            <label for="user-phone" class="am-u-sm-12 am-form-label am-text-left">广告位 <span class="tpl-form-line-small-title">（必选）</span></label>
+                            <div class="am-u-sm-12  am-margin-top-xs">
+                                <select name="block" data-am-selected="{searchBox: 1, maxHeight: 250}" style="display: none;" required="">
+                                    {foreach $adBlocks as $block}
+                                    <option value="{$block.block}" {if ($block.block==$advertising.block)}selected{/if}>{$block.name}</option>
+                                    {/foreach}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="am-form-group">
+                            <label for="user-name" class="am-u-sm-12 am-form-label am-text-left">标题 <span class="tpl-form-line-small-title">（必填）</span></label>
+                            <div class="am-u-sm-12">
+                                <input name="title" value="{$advertising.title}" type="text" class="tpl-form-input am-margin-top-xs" placeholder="请输入标题文字" required>
+                                <small>建议10-20字左右，最长不超过100个字。</small>
+                            </div>
+                        </div>
+                        <div class="am-form-group">
+                            <label for="user-weibo" class="am-u-sm-12 am-form-label  am-text-left">图片 <span class="tpl-form-line-small-title">Images</span></label>
+                            <div class="am-u-sm-12 am-margin-top-xs">
+                                <div class="am-form-group am-form-file">
+                                    <div class="tpl-form-file-img">
+                                        <img src="{$advertising.image}" class="am-thumbnail error-nopic" style="max-height: 120px;">
+                                    </div>
+                                    <button type="button" class="am-btn am-btn-danger am-btn-sm ">
+                                        <i class="am-icon-cloud-upload"></i> 添加封面图片</button>
+                                    <input name="image" class="form-img" type="file">
+                                </div>
+                                <div class="file-list"></div>
+                            </div>
+                        </div>
+                        <div class="am-form-group">
+                            <div class="am-u-sm-12 am-u-sm-push-12">
+                                <input name="id" value="{$advertising.id}" type="hidden">
+                                <button type="submit" class="am-btn am-btn-primary tpl-btn-bg-color-success ">提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}

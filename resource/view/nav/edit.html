@@ -1,0 +1,80 @@
+{extend name="layout/base" /} {block name="main"}
+<div class="row-content am-cf">
+    <div class="row">
+        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+            <div class="widget am-cf">
+                <div class="widget-head am-cf">
+                    <div class="widget-title am-fl">添加/编辑</div>
+                    <div class="widget-function am-fr">
+                        <a href="{:url('tadmin.nav')}" class="am-icon-list" title="列表"></a>
+                    </div>
+                </div>
+                <div class="widget-body am-fr">
+                    <form class="am-form tpl-form-border-form" method="post" data-am-validator>
+                        <div class="am-form-group">
+                            <label for="user-phone" class="am-u-sm-12 am-form-label am-text-left">上级导航 <span class="tpl-form-line-small-title">（必选）</span></label>
+                            <div class="am-u-sm-12  am-margin-top-xs">
+                                <select name="parent_id" data-am-selected="{searchBox: 1, maxHeight: 250}" style="display: none;">
+                                    <option value="0">顶级导航</option>
+                                    {foreach $parents as $pnav}
+                                    <option value="{$pnav.id}" {if ($pnav.id == $nav.parent_id)}selected{/if}>{$pnav.prefix}{$pnav.title}</option>
+                                    {/foreach}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="am-form-group">
+                            <label for="user-name" class="am-u-sm-12 am-form-label am-text-left">导航名称 <span class="tpl-form-line-small-title">（必填）</span></label>
+                            <div class="am-u-sm-12">
+                                <input name="title" value="{$nav.title}" type="text" class="tpl-form-input am-margin-top-xs" placeholder="请输入标题文字" required>
+                                <small>建议10-20字左右，最长不超过100个字。</small>
+                            </div>
+                        </div>
+                        <div class="am-form-group">
+                            <label for="user-name" class="am-u-sm-12 am-form-label am-text-left">打开链接 </label>
+                            <div class="am-u-sm-12">
+                                <input name="uri" value="{$nav.uri}" type="text" class="tpl-form-input am-margin-top-xs">
+                            </div>
+                        </div>
+                        <div class="am-form-group">
+                            <label for="user-name" class="am-u-sm-12 am-form-label am-text-left">打开方式 <span class="tpl-form-line-small-title">（必选）</span></label>
+                            <div class="am-u-sm-12">
+                                {foreach $targets as $target => $targetText}
+                                <label class="am-radio-inline">
+                                    <input type="radio" name="target" value="{$target}" data-am-ucheck required {if $nav.target==$target }checked{/if}> {$targetText}
+                                </label>
+                                {/foreach}
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="am-form-group">
+                            <label for="user-name" class="am-u-sm-12 am-form-label am-text-left">排序 </label>
+                            <div class="am-u-sm-12">
+                                <input name="sort" value="{$nav.sort}" type="text" class="tpl-form-input am-margin-top-xs" placeholder="100">
+                                <small>按数字升序排列</small>
+                            </div>
+                        </div>
+                        <div class="am-form-group">
+                            <label for="user-name" class="am-u-sm-12 am-form-label am-text-left">状态 </label>
+                            <div class="am-u-sm-12">
+                                <label class="am-radio-inline">
+                                    <input type="radio" name="status" value="1" data-am-ucheck {if $nav.status=='1' }checked{/if}> 正常
+                                </label>
+                                <label class="am-radio-inline">
+                                    <input type="radio" name="status" value="0" data-am-ucheck {if $nav.status=='0' }checked{/if}> 隐藏
+                                </label>
+                            </div>
+                        </div>
+                        <div class="am-form-group">
+                            <div class="am-u-sm-12 am-u-sm-push-12">
+                                <input name="id" value="{$nav.id}" type="hidden">
+                                <button type="submit" class="am-btn am-btn-primary tpl-btn-bg-color-success ">提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}

@@ -1,0 +1,40 @@
+<!-- 侧边导航栏 -->
+<div class="left-sidebar">
+    <!-- 用户信息 -->
+    <!-- <div class="tpl-sidebar-user-panel">
+                <div class="tpl-user-panel-slide-toggleable">
+                    <div class="tpl-user-panel-profile-picture">
+                        <img src="__TADMIN_ASSETS__/img/user04.png" alt="">
+                    </div>
+                    <span class="user-panel-logged-in-text">
+                        <i class="am-icon-circle-o am-text-success tpl-user-panel-status-icon"></i>
+                        禁言小张
+                    </span>
+                    <a href="javascript:;" class="tpl-user-panel-action-link"> <span class="am-icon-pencil"></span> 账号设置</a>
+                </div>
+            </div> -->
+    <!-- 菜单 -->
+    <ul class="sidebar-nav">
+        <!-- <li class="sidebar-nav-heading">Page<span class="sidebar-nav-heading-info"> 常用页面</span></li> -->
+        {foreach $menus as $menu}
+        <li class="sidebar-nav-link">
+            <a href="{if isset($menu['children'])}javascript:;{else}/tadmin{$menu.uri}{/if}" class="sidebar-nav-sub-title">
+                        <i class="{$menu.icon} sidebar-nav-link-logo"></i> {$menu.title}
+                        {if isset($menu['children'])}
+                        <span class="am-icon-chevron-down am-fr am-margin-right-sm sidebar-nav-sub-ico"></span>
+                        {/if}
+                    </a> {if isset($menu['children'])}
+            <ul class="sidebar-nav sidebar-nav-sub">
+                {foreach $menu['children'] as $children}
+                <li class="sidebar-nav-link">
+                    <a href="/tadmin{$children.uri}">
+                                <span class="am-icon-angle-right sidebar-nav-link-logo"></span> {$children.title}
+                            </a>
+                </li>
+                {/foreach}
+            </ul>
+            {/if}
+        </li>
+        {/foreach}
+    </ul>
+</div>

@@ -1,0 +1,76 @@
+{extend name="layout/base" /} {block name="main"}
+<div class="row-content am-cf">
+    <div class="row">
+        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+            <div class="widget am-cf">
+                <div class="widget-head am-cf">
+                    <div class="widget-title am-fl">添加</div>
+                    <div class="widget-function am-fr">
+                        <a href="{:url('tadmin.config')}" class="am-icon-list" title="列表"></a>
+                    </div>
+                </div>
+                <div class="widget-body am-fr">
+                    <form class="am-form tpl-form-border-form" method="post" data-am-validator>
+                        <div class="am-form-group">
+                            <label for="user-name" class="am-u-sm-12 am-form-label am-text-left">配置名称 <span class="tpl-form-line-small-title">（必填）</span></label>
+                            <div class="am-u-sm-12">
+                                <input name="name" type="text" class="tpl-form-input am-margin-top-xs" required>
+                                <small>建议10-20字左右，最长不超过100个字。</small>
+                            </div>
+                        </div>
+                        <div class="am-form-group">
+                            <label for="user-name" class="am-u-sm-12 am-form-label am-text-left">配置类型 <span class="tpl-form-line-small-title">（必选）</span></label>
+                            <div class="am-u-sm-12">
+                                <label class="am-radio-inline">
+                                    <input type="radio" name="type" value="site" data-am-ucheck required> 站点
+                                </label>
+                                <label class="am-radio-inline">
+                                    <input type="radio" name="type" value="upload" data-am-ucheck > 上传
+                                </label>
+                                <label class="am-radio-inline">
+                                    <input type="radio" name="type" value="other" data-am-ucheck checked> 其他
+                                </label>
+                            </div>
+                        </div>
+                        <div class="am-form-group">
+                            <label for="user-phone" class="am-u-sm-12 am-form-label am-text-left">值类型 <span class="tpl-form-line-small-title">（必选）</span></label>
+                            <div class="am-u-sm-12  am-margin-top-xs">
+                                <select name="model" data-am-selected style="display: none;" required="">
+                                    <option value="text">单行文本</option>
+                                    <option value="textarea">多行文本</option>
+                                    <option value="switch">开关</option>
+                                    <!-- <option value="radio">单选</option>
+                                    <option value="checkbox">多选</option> -->
+                                </select>
+                            </div>
+                        </div>
+                        <div class="am-form-group">
+                            <label for="user-name" class="am-u-sm-12 am-form-label am-text-left">变量名 </label>
+                            <div class="am-u-sm-12">
+                                <input name="key" type="text" class="tpl-form-input am-margin-top-xs" required="">
+                            </div>
+                        </div>
+                        <div class="am-form-group">
+                            <label for="user-name" class="am-u-sm-12 am-form-label am-text-left">变量值 </label>
+                            <div class="am-u-sm-12">
+                                <input name="value"type="text" class="tpl-form-input am-margin-top-xs">
+                            </div>
+                        </div>
+                        <div class="am-form-group">
+                            <label for="user-intro" class="am-u-sm-12 am-form-label  am-text-left">配置说明</label>
+                            <div class="am-u-sm-12 am-margin-top-xs">
+                                <textarea name="desc" class="" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div class="am-form-group">
+                            <div class="am-u-sm-12 am-u-sm-push-12">
+                                <button type="submit" class="am-btn am-btn-primary tpl-btn-bg-color-success ">提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}

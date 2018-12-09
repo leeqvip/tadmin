@@ -1,0 +1,54 @@
+{extend name="layout/base" /} {block name="main"}
+<div class="row-content am-cf">
+    <div class="row">
+        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+            <div class="widget am-cf">
+                <div class="widget-head am-cf">
+                    <div class="widget-title am-fl">职位列表</div>
+                    <div class="widget-function am-fr">
+                        <a href="javascript:location.reload();" class="am-icon-refresh" title="刷新"></a>
+                    </div>
+                </div>
+                <div class="widget-body  widget-body-lg am-fr">
+                    <div class="am-u-sm-12 am-scrollable-horizontal ">
+                        <table width="100%" class="am-table am-table-compact am-table-striped tpl-table-black am-text-middle" id="example-r">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>简历名称</th>
+                                    <th>内容</th>
+                                    <th>投递时间</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {foreach $resumes as $resume}
+                                <tr class="gradeX">
+                                    <td>{$resume.id}</td>                                    
+                                    <td>
+                                        <div class="image-title-group">                                            
+                                            <p><strong>{$resume.title}</strong>
+                                        </div>
+                                    </td>
+                                    <td>{$resume.summary_text}</td>
+                                    <td>{$resume.created_at}</td>                                    
+                                    <td><a href="{:url('tadmin.job.resume.item')}?id={$resume.id}">
+                                                <i class="am-icon-pencil"></i> 查看
+                                            </a></td>
+                                </tr>
+                                {/foreach}
+                                <!-- more data -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="am-u-lg-12 am-cf">
+                        <div class="am-fr">
+                            {$resumes|raw}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}

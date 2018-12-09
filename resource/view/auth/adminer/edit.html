@@ -1,0 +1,57 @@
+{extend name="layout/base" /} {block name="main"}
+<div class="row-content am-cf">
+    <div class="row">
+        <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+            <div class="widget am-cf">
+                <div class="widget-head am-cf">
+                    <div class="widget-title am-fl">添加/编辑</div>
+                    <div class="widget-function am-fr">
+                        <a href="{:url('tadmin.auth.adminer')}" class="am-icon-list" title="列表"></a>
+                    </div>
+                </div>
+                <div class="widget-body am-fr">
+                    <form class="am-form tpl-form-border-form" method="post" enctype="multipart/form-data" data-am-validator>
+                        <div class="am-form-group">
+                            <label for="user-name" class="am-u-sm-12 am-form-label am-text-left">登录账号 <span class="tpl-form-line-small-title">（必填）</span></label>
+                            <div class="am-u-sm-12">
+                                <input name="admin_account" value="{$adminer.admin_account}" type="text" class="tpl-form-input am-margin-top-xs" placeholder="请输入账号" required="">
+                                <small>账号必须是字母、数字和下划线_及破折号-，建议6-16字左右。</small>
+                            </div>
+                        </div>
+                        <div class="am-form-group">
+                            <label for="user-name" class="am-u-sm-12 am-form-label am-text-left">初始密码 <span class="tpl-form-line-small-title">（必填）</span></label>
+                            <div class="am-u-sm-12">
+                                <input name="admin_password" value="" type="password" class="tpl-form-input am-margin-top-xs" placeholder="请输入账号">
+                                <small>建议6-20字左右，最长不超过50个字符，如果不修改，请不要填写。</small>
+                            </div>
+                        </div>
+                        <div class="am-form-group">
+                            <label for="user-name" class="am-u-sm-12 am-form-label am-text-left">确认密码 <span class="tpl-form-line-small-title">（必填）</span></label>
+                            <div class="am-u-sm-12">
+                                <input name="admin_password_confirm" value="" type="password" type="text" class="tpl-form-input am-margin-top-xs" placeholder="请输入账号">
+                                <small>再次输入初始密码。</small>
+                            </div>
+                        </div>
+                        <div class="am-form-group">
+                            <label for="user-name" class="am-u-sm-12 am-form-label am-text-left">角色 <span class="tpl-form-line-small-title">（必填）</span></label>
+                            <div class="am-u-sm-12">
+                                {foreach $roles as $role}
+                                <label class="am-checkbox-inline">
+                                    <input name="role_id[]" type="checkbox" value="{$role.id}" data-am-ucheck {if in_array($role.id,$roleIds)}checked{/if}> {$role.name}
+                                </label>
+                                {/foreach}
+                            </div>
+                        </div>
+                        <div class="am-form-group">
+                            <div class="am-u-sm-12 am-u-sm-push-12">
+                                <input name="id" value="{$adminer.id}" type="hidden">
+                                <button type="submit" class="am-btn am-btn-primary tpl-btn-bg-color-success ">提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
