@@ -1,12 +1,25 @@
-Tadmin
-=====
+<h1 align="center">
+  Tadmin
+</h1>
 
-[![StyleCI](https://github.styleci.io/repos/149270146/shield?branch=master)](https://github.styleci.io/repos/149270146)
-[![Latest Stable Version](https://poser.pugx.org/techone/admin/v/stable)](https://packagist.org/packages/techone/admin)
-[![Total Downloads](https://poser.pugx.org/techone/admin/downloads)](https://packagist.org/packages/techone/admin)
-[![License](https://poser.pugx.org/techone/admin/license)](https://packagist.org/packages/techone/admin)
+<p align="center">
+  <strong>一个基于ThinkPHP5.1+和AmazeUI的快速后台开发框架</strong>
+</p>
 
-**Tadmin** 是一个基于ThinkPHP5.1+和AmazeUI的快速后台开发框架。
+<p align="center">
+  <a href="https://styleci.io/repos/161045623">
+    <img src="https://styleci.io/repos/161045623/shield?branch=master" alt="StyleCI">
+  </a>   
+   <a href="https://packagist.org/packages/techone/tadmin">
+      <img src="https://poser.pugx.org/techone/tadmin/v/stable.png" alt="Latest Stable Version">
+  </a>   
+  <a href="https://packagist.org/packages/techone/tadmin">
+      <img src="https://poser.pugx.org/techone/tadmin/downloads.png" alt="Total Downloads">
+  </a>   
+  <a href="https://packagist.org/packages/techone/tadmin">
+    <img src="https://poser.pugx.org/techone/tadmin/license.png" alt="License">
+  </a>
+</p>
 
 ## 安装
 
@@ -45,3 +58,13 @@ return [
 打开后台地址，例如：
 
 http://yourdomain/tadmin
+
+## 协议
+
+`Tadmin` 采用 [MIT](LICENSE) 开源协议发布。
+
+## 联系
+
+有问题或者功能建议，请联系我们或者提交PR:
+- https://github.com/techoner/tadmin/issues
+- techlee@qq.com
