@@ -5,10 +5,10 @@ namespace tadmin\controller;
 use tadmin\model\Link as LinkModel;
 use tadmin\model\LinkBlock;
 use tadmin\service\upload\contract\Factory as Uploader;
-use tadmin\support\controller\AbstractController;
+use tadmin\support\controller\Controller;
 use think\Request;
 
-class Link extends AbstractController
+class Link extends Controller
 {
     protected $model;
 

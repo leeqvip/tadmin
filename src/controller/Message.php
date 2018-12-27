@@ -3,10 +3,10 @@
 namespace tadmin\controller;
 
 use tadmin\model\MessageBoard;
-use tadmin\support\controller\AbstractController;
+use tadmin\support\controller\Controller;
 use think\Request;
 
-class Message extends AbstractController
+class Message extends Controller
 {
     protected $model;
 

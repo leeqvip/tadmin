@@ -3,10 +3,10 @@
 namespace tadmin\controller;
 
 use tadmin\model\Config as ConfigModel;
-use tadmin\support\controller\AbstractController;
+use tadmin\support\controller\Controller;
 use think\Request;
 
-class Config extends AbstractController
+class Config extends Controller
 {
     protected $config;
 

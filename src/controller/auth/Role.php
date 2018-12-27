@@ -4,10 +4,10 @@ namespace tadmin\controller\auth;
 
 use tadmin\model\Permission;
 use tadmin\model\Role as RoleModel;
-use tadmin\support\controller\AbstractController;
+use tadmin\support\controller\Controller;
 use think\Request;
 
-class Role extends AbstractController
+class Role extends Controller
 {
     protected $role;
 

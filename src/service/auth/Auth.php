@@ -55,6 +55,7 @@ class Auth implements contract\Auth
         $validate = Validate::make([
             'admin_account' => 'require|max:25',
             'admin_password' => 'require|max:25',
+            'captcha|验证码' => 'require|captcha',
         ], [
             'admin_account.require' => '登录名必须',
             'admin_account.max' => '登录名最多不能超过25个字符',

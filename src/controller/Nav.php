@@ -3,10 +3,10 @@
 namespace tadmin\controller;
 
 use tadmin\model\Nav as NavModel;
-use tadmin\support\controller\AbstractController;
+use tadmin\support\controller\Controller;
 use think\Request;
 
-class Nav extends AbstractController
+class Nav extends Controller
 {
     protected $model;
 

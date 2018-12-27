@@ -3,10 +3,10 @@
 namespace tadmin\controller\auth;
 
 use tadmin\model\Permission as PermissionModel;
-use tadmin\support\controller\AbstractController;
+use tadmin\support\controller\Controller;
 use think\Request;
 
-class Permission extends AbstractController
+class Permission extends Controller
 {
     protected $permission;
 

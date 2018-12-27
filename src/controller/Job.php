@@ -4,10 +4,10 @@ namespace tadmin\controller;
 
 use tadmin\model\Job as JobModel;
 use tadmin\model\JobResume;
-use tadmin\support\controller\AbstractController;
+use tadmin\support\controller\Controller;
 use think\Request;
 
-class Job extends AbstractController
+class Job extends Controller
 {
     protected $job;
 

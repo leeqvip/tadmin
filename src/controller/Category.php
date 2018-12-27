@@ -3,10 +3,10 @@
 namespace tadmin\controller;
 
 use tadmin\model\Category as CategoryModel;
-use tadmin\support\controller\AbstractController;
+use tadmin\support\controller\Controller;
 use think\Request;
 
-class Category extends AbstractController
+class Category extends Controller
 {
     protected $category;
 

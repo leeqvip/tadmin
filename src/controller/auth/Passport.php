@@ -3,10 +3,10 @@
 namespace tadmin\controller\auth;
 
 use tadmin\service\auth\contract\Auth;
-use tadmin\support\controller\AbstractController;
+use tadmin\support\controller\Controller;
 use think\Request;
 
-class Passport extends AbstractController
+class Passport extends Controller
 {
     protected $auth;
 

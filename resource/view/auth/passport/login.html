@@ -19,10 +19,14 @@
         <div class="tpl-login-content">
             <form class="am-form tpl-form-line-form" method="post" data-am-validator>
                 <div class="am-form-group">
-                    <input type="text" class="tpl-form-input" id="user-name" name="admin_account" placeholder="请输入账号" required="">
+                    <input type="text" class="tpl-form-input" id="user-name" name="admin_account" placeholder="请输入账号" required>
                 </div>
                 <div class="am-form-group">
-                    <input type="password" class="tpl-form-input" id="user-password" name="admin_password"  placeholder="请输入密码" required="">
+                    <input type="password" class="tpl-form-input" id="user-password" name="admin_password"  placeholder="请输入密码" required>
+                </div>
+                <div class="am-form-group">
+                    <input type="text" class="tpl-form-input" id="user-code" name="captcha"  placeholder="验证码" required style="width: 60%;float: left;">
+                    <img src="{:captcha_src()}" alt="captcha" id="user-code-img" style="width: 40%;height: 32px;float: left;" onclick="this.src=this.src+'?t='+Math.random()" />
                 </div>
                 <div class="am-form-group">
                     <button type="submit" class="am-btn am-btn-primary  am-btn-block tpl-btn-bg-color-success  tpl-login-btn">提交</button>

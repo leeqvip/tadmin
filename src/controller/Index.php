@@ -4,9 +4,9 @@ namespace tadmin\controller;
 
 use tadmin\model\Article;
 use tadmin\model\OperationLog;
-use tadmin\support\controller\AbstractController;
+use tadmin\support\controller\Controller;
 
-class Index extends AbstractController
+class Index extends Controller
 {
     protected $operationLog;
 

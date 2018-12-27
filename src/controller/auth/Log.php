@@ -3,9 +3,9 @@
 namespace tadmin\controller\auth;
 
 use tadmin\model\OperationLog;
-use tadmin\support\controller\AbstractController;
+use tadmin\support\controller\Controller;
 
-class Log extends AbstractController
+class Log extends Controller
 {
     protected $operationLog;
 

@@ -5,12 +5,12 @@ namespace tadmin\support\controller;
 use tadmin\model\Menu;
 use tadmin\service\auth\facade\Auth;
 use think\Container;
-use think\Controller;
+use think\Controller as ThinkController;
 use think\facade\Config;
 use think\Console;
 use think\Loader;
 
-abstract class AbstractController extends Controller
+abstract class Controller extends ThinkController
 {
     protected $viewPath = '';
 

@@ -5,12 +5,12 @@ namespace tadmin\controller\auth;
 use tadmin\model\Adminer as AdminerModel;
 use tadmin\model\Role;
 use tadmin\service\upload\contract\Factory as Uploader;
-use tadmin\support\controller\AbstractController;
+use tadmin\support\controller\Controller;
 use think\exception\ValidateException;
 use think\facade\Validate;
 use think\Request;
 
-class Adminer extends AbstractController
+class Adminer extends Controller
 {
     protected $adminer;
 

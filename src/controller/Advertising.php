@@ -5,10 +5,10 @@ namespace tadmin\controller;
 use tadmin\model\Advertising as AdvertisingModel;
 use tadmin\model\AdvertisingBlock;
 use tadmin\service\upload\contract\Factory as Uploader;
-use tadmin\support\controller\AbstractController;
+use tadmin\support\controller\Controller;
 use think\Request;
 
-class Advertising extends AbstractController
+class Advertising extends Controller
 {
     protected $model;
 

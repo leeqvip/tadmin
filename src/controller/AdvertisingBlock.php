@@ -3,10 +3,10 @@
 namespace tadmin\controller;
 
 use tadmin\model\AdvertisingBlock as AdvertisingBlockModel;
-use tadmin\support\controller\AbstractController;
+use tadmin\support\controller\Controller;
 use think\Request;
 
-class AdvertisingBlock extends AbstractController
+class AdvertisingBlock extends Controller
 {
     protected $model;
 

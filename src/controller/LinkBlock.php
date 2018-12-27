@@ -3,10 +3,10 @@
 namespace tadmin\controller;
 
 use tadmin\model\LinkBlock as LinkBlockModel;
-use tadmin\support\controller\AbstractController;
+use tadmin\support\controller\Controller;
 use think\Request;
 
-class LinkBlock extends AbstractController
+class LinkBlock extends Controller
 {
     protected $model;
 

@@ -5,10 +5,10 @@ namespace tadmin\controller;
 use tadmin\model\Category;
 use tadmin\model\Single as SingleModel;
 use tadmin\service\upload\contract\Factory as Uploader;
-use tadmin\support\controller\AbstractController;
+use tadmin\support\controller\Controller;
 use think\Request;
 
-class Single extends AbstractController
+class Single extends Controller
 {
     protected $single;
 
