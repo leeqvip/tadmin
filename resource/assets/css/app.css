@@ -21,7 +21,7 @@ header {
   vertical-align: middle;
 }
 .tpl-header-logo img {
-  width: 170px;
+  width: 40px;margin: 0px 10px 0px 0px;
 }
 .tpl-header-fluid {
   margin-left: 240px;
@@ -600,7 +600,7 @@ ul.tpl-dropdown-content .tpl-dropdown-menu-messages-item .menu-messages-content 
 }
 .tpl-login-logo {
   max-width: 159px;
-  height: 205px;
+  height: 100px;
   margin: 0 auto;
   margin-bottom: 20px;
 }
@@ -610,7 +610,7 @@ ul.tpl-dropdown-content .tpl-dropdown-menu-messages-item .menu-messages-content 
 }
 .tpl-login-content {
   width: 300px;
-  margin: 12% auto 0;
+  margin: 10% auto 0;
 }
 .tpl-login-remember-me {
   color: #B3B3B3;
