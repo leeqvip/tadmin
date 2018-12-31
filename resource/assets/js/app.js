@@ -26,31 +26,59 @@ function autoResize() {
     $(".content-wrapper").css('min-height', parseInt(minHeight));
 }
 
+function renderWangEditor(obj){
+    obj.hide();
+    $div = $('<div></div>');
+    obj.before($div);
+    var E = window.wangEditor
+    var editor = new E($div[0]);
+    // editor.customConfig.uploadImgShowBase64 = true;
+    editor.customConfig.uploadImgServer = '/tadmin/upload/image'    
+    
+    editor.customConfig.onchange = function(html) {
+        obj.val(html)
+    }
+    editor.create()
+    editor.txt.html(obj.val())
+}
+
 function bootWangEditor(obj){
     if (!window.wangEditor) {
         $.ajax({
             url: adminApp.path.assets + '/editor/wangEditor/wangEditor.min.js',
-            async: false,
             dataType: 'script'
+        }).done(function() {
+            renderWangEditor(obj)
         });
-    }
-    var E = window.wangEditor
-    var editor = new E(obj[0]);
-    // editor.customConfig.uploadImgShowBase64 = true;
-    editor.customConfig.uploadImgServer = '/admin/upload/image'
-    var name = $(this).attr('data-name') || 'content';
-    var content = $(this).after('<textarea name="' + name + '" style="display:none;"></textarea>');
-    var $text = $(this).next('textarea[name=' + name + ']')
-    editor.customConfig.onchange = function(html) {
-        $text.val(html)
-    }
-    editor.create()
-    $text.val(editor.txt.html())
+    }else{
+        renderWangEditor(obj)
+    }    
 }
 
 function bootUEditor(obj){
     if (!window.uEditor) {
-        document.write('<script type="text/javascript" src="'+ adminApp.path.assets'/editor/ueditor/_src/api.js"></script>');
+        window.UEDITOR_HOME_URL = adminApp.path.assets + '/editor/ueditor/'
+        window.ueControllerPath = '/tadmin/upload/ueditor'
+        $.ajax({
+            url: window.UEDITOR_HOME_URL + 'ueditor.config.js',            
+            dataType: 'script',            
+        })
+        .done(function() {
+            $.ajax({
+                url: window.UEDITOR_HOME_URL + 'ueditor.all.min.js',            
+                dataType: 'script',            
+            })
+            .done(function(data) {                
+                $.ajax({
+                    url: window.UEDITOR_HOME_URL + 'lang/zh-cn/zh-cn.js',            
+                    dataType: 'script',            
+                })
+                .done(function() {
+                    var ue = UE.getEditor(obj.attr('id'));
+                });
+            });
+        });
+        
     }
 }
 

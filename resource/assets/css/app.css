@@ -5,7 +5,7 @@ li {
   margin: 0;
 }
 header {
-  z-index: 1200;
+  z-index: 120;
   position: relative;
 }
 .tpl-header-logo {
@@ -14,7 +14,7 @@ header {
   display: table;
   text-align: center;
   position: relative;
-  z-index: 1300;
+  z-index: 130;
 }
 .tpl-header-logo a {
   display: table-cell;
@@ -187,18 +187,18 @@ ul.tpl-dropdown-content .tpl-dropdown-menu-messages-item .menu-messages-content 
   font-size: 11px;
 }
 .am-dimmer {
-  z-index: 1200;
+  z-index: 120;
 }
 .am-modal {
-  z-index: 1300;
+  z-index: 130;
 }
 .am-datepicker-dropdown {
-  z-index: 1400;
+  z-index: 140;
 }
 .tpl-skiner {
   transition: all 0.4s ease-in-out;
   position: fixed;
-  z-index: 10000;
+  z-index: 150;
   right: -130px;
   top: 65px;
 }
@@ -269,7 +269,7 @@ ul.tpl-dropdown-content .tpl-dropdown-menu-messages-item .menu-messages-content 
   min-height: 100%;
   padding-top: 57px;
   position: absolute;
-  z-index: 1104;
+  z-index: 110;
   top: 0;
   left: 0px;
 }
@@ -378,7 +378,7 @@ ul.tpl-dropdown-content .tpl-dropdown-menu-messages-item .menu-messages-content 
   transition: all 0.4s ease-in-out;
   position: relative;
   margin-left: 240px;
-  z-index: 1101;
+  z-index: 110;
   min-height: 922px;
   border-bottom-left-radius: 3px;
 }
