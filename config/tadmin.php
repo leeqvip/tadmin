@@ -7,7 +7,10 @@
  */
 return [
     'template' => [
+        // 视图目录
         'view_path' => admin_view_path(),
+        // public目录名
+        'public_name' => 'public',
         'tpl_replace_string' => [
             '__TADMIN_ASSETS__' => '/tmp/assets',
         ],

@@ -132,6 +132,15 @@ CREATE TABLE IF NOT EXISTS `{$this->tablePrefix}configs` (
 );
 
 -- ----------------------------
+-- Records of tadmin_configs
+-- ----------------------------
+INSERT INTO `{$this->tablePrefix}configs` VALUES ('1', '站点名称', 'text', 'title', 'Tadmin - 基于ThinkPHP5.1+和AmazeUI的快速后台开发框架', 'site', '站点名称', '1', '2019-01-01 11:58:26', '2019-01-01 14:35:10');
+INSERT INTO `{$this->tablePrefix}configs` VALUES ('2', '关键词', 'text', 'keywords', '建站后台|快速建站|模板后台|响应式网站', 'site', '站点关键词，多个关键词之间以英文逗号‘,’或‘|’’隔开', '1', '2019-01-01 14:12:14', '2019-01-01 14:35:10');
+INSERT INTO `{$this->tablePrefix}configs` VALUES ('3', '站点描述', 'textarea', 'description', 'Tadmin，基于ThinkPHP5.1+和AmazeUI的快速后台开发框架。', 'site', '站点描述，建议不超过80个字。', '1', '2019-01-01 14:14:28', '2019-01-01 14:35:10');
+INSERT INTO `{$this->tablePrefix}configs` VALUES ('4', '备案号', 'text', 'icp', '', 'site', '', '1', '2019-01-01 14:25:28', '2019-01-01 14:35:10');
+INSERT INTO `{$this->tablePrefix}configs` VALUES ('5', '版权信息', 'textarea', 'copyright', 'CopyRight©2019 Tadmin', 'site', '站点版权信息，通常显示在网站底部', '1', '2019-01-01 14:26:40', '2019-01-01 14:35:10');
+
+-- ----------------------------
 -- Table structure for {$this->tablePrefix}job_resumes
 -- ----------------------------
 CREATE TABLE IF NOT EXISTS `{$this->tablePrefix}job_resumes` (

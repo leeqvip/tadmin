@@ -43,8 +43,15 @@ abstract class Controller extends ThinkController
         $this->viewPath = config('tadmin.template.view_path');
         $this->view->config('view_path', $this->viewPath);
         $this->view->config('tpl_replace_string', config('tadmin.template.tpl_replace_string'));
-        $assets = config('tadmin.template.tpl_replace_string.__TADMIN_ASSETS__');
-        if (!file_exists(Loader::getRootPath().ltrim($assets, '/'))) {
+        $assets = ltrim(config('tadmin.template.tpl_replace_string.__TADMIN_ASSETS__'), '/');
+        $publicName = trim(config('tadmin.template.public_name'), '/');
+        $documentPath = Loader::getRootPath();
+
+        if (!empty($publicName)) {
+            $documentPath .= $publicName.'/';
+        }
+
+        if (!file_exists($documentPath.$assets)) {
             throw new \Exception('Resource not published,Please initialize tadmin.');
             // Console::call('tadmin:init');
         }
