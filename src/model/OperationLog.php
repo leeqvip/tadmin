@@ -62,8 +62,8 @@ class OperationLog extends Model
 
         // finally get the correct version number
         // Added "|:"
-        $known = array('Version', $ub, 'other');
-        $pattern = '#(?<browser>'.join('|', $known).')[/|: ]+(?<version>[0-9.|a-zA-Z.]*)#';
+        $known = ['Version', $ub, 'other'];
+        $pattern = '#(?<browser>'.implode('|', $known).')[/|: ]+(?<version>[0-9.|a-zA-Z.]*)#';
         if (!preg_match_all($pattern, $user_agent, $matches)) {
             // we have no matching number just continue
         }
@@ -87,12 +87,12 @@ class OperationLog extends Model
             $version = '?';
         }
 
-        return array(
+        return [
             'userAgent' => $user_agent,
             'name' => $bname,
             'version' => $version,
             'platform' => $platform,
             'pattern' => $pattern,
-        );
+        ];
     }
 }
