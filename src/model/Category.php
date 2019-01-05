@@ -40,4 +40,9 @@ class Category extends Model
     {
         return $this->hasMany(Article::class, 'category_id', 'id');
     }
+
+    public function single()
+    {
+        return $this->hasOne(Single::class, 'category_id', 'id');
+    }
 }
