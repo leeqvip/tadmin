@@ -21,6 +21,12 @@
   </a>
 </p>
 
+<p align="center">
+  <a href="http://tadmin.tech1024.com/" target="_blank">
+    <img src="samples/201901060024581.png">
+  </a>
+</p>
+
 ## 安装
 
 最方便的安装方式就是使用Composer ( https://getcomposer.org/ )，在这之前务必先搭建好thinkphp5.1项目
