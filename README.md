@@ -29,7 +29,7 @@
 
 ## 安装
 
-最方便的安装方式就是使用Composer ( https://getcomposer.org/ )，在这之前务必先搭建好thinkphp5.1项目
+最方便的安装方式就是使用Composer ( https://getcomposer.org/ )，在这之前**务必**先搭建好thinkphp5.1项目
 
 1、安装 Tadmin :
 
@@ -64,6 +64,15 @@ return [
 打开后台地址，例如：
 
 http://yourdomain/tadmin
+
+## 演示地址
+
+**后台**：
+http://tadmin-skeleton.tech1024.com/tadmin
+用户名：admin 密码：abc-123
+
+**前台**：
+http://tadmin-skeleton.tech1024.com
 
 ## 协议
 
