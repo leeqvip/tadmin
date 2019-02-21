@@ -121,7 +121,7 @@ class Adminer extends Controller
     protected function validateAdminAccount(array $data)
     {
         $validate = Validate::make([
-            'admin_account' => 'require|alphaDash|max:16|unique:tadmin_adminer',
+            'admin_account' => 'require|alphaDash|max:16|unique:adminer',
         ], [
             'admin_account.require' => '登录账号必须',
             'admin_account.alphaDash' => '登录账号只能是字母、数字和下划线_及破折号-',
