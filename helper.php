@@ -49,6 +49,24 @@ function site_config($key)
     return Config::get($key);
 }
 
+function array_deep_merge(array $a, array $b)
+{
+    foreach ($a as $key => $val) {
+        if (isset($b[$key])) {
+            if (gettype($a[$key]) != gettype($b[$key])) {
+                continue;
+            }
+            if (is_array($a[$key])) {
+                $a[$key] = array_deep_merge($a[$key], $b[$key]);
+            } else {
+                $a[$key] = $b[$key];
+            }
+        }
+    }
+
+    return $a;
+}
+
 \think\Console::addDefaultCommands([
     'tadmin:init' => \tadmin\command\Init::class,
     'tadmin:migrate:run' => \tadmin\command\Migrate::class,

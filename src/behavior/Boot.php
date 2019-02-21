@@ -66,12 +66,17 @@ class Boot
                 $configName = pathinfo($file, PATHINFO_FILENAME);
                 $config = $this->app->config->pull($configName);
 
-                $this->app->config->load($file, $configName);
+                $config = array_deep_merge(
+                    require_once $file,
+                    $config
+                );
+
+                $this->app->config->set($config, $configName);
 
                 // 重新加载应用中的同名配置，以覆盖此配置
-                if (is_file($this->app->getConfigPath().basename($file))) {
-                    $this->app->config->load($this->app->getConfigPath().basename($file), $configName);
-                }
+                // if (is_file($this->app->getConfigPath().basename($file))) {
+                //     $this->app->config->load($this->app->getConfigPath().basename($file), $configName);
+                // }
             }
         }
     }
