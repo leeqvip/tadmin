@@ -2,6 +2,7 @@
 
 namespace tadmin\middleware;
 
+use tadmin\controller\Transfer;
 use tadmin\service\auth\facade\Auth;
 use Casbin;
 
@@ -21,8 +22,9 @@ class PermissionCheck
             return $next($request);
         }
 
-        if (true !== Casbin::enforce($this->request->method(true), $this->parseCurrentPath())) {
-            throw new \Exception('权限不足');
+        if (true !== Casbin::enforce('adminer.'.$adminer->id, $this->request->method(true), $this->parseCurrentPath())) {
+            return controller(Transfer::class, '')->message('权限不足');
+            // throw new \Exception('权限不足');
         }
 
         return $next($request);
