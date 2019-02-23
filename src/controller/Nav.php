@@ -31,7 +31,7 @@ class Nav extends Controller
 
         $parents = $this->model->flatTree();
 
-        $targets = $this->model::mapTarget();
+        $targets = $this->model->mapTarget();
 
         return $this->fetch('nav/edit', [
             'nav' => $nav,
