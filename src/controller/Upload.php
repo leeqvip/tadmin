@@ -745,17 +745,18 @@ class Uploader
      */
     private function getFilePath()
     {
-        $fullname = $this->fullName;
-        $rootPath = env('root_path');
-        if (in_array(substr($rootPath, -1, 1), ['\\', '/'], true)) {
-            $rootPath = substr($rootPath, 0, -1);
-        }
+        return public_path($this->fullName);
+        // $fullname = $this->fullName;
+        // $rootPath = public_path();
+        // if (in_array(substr($rootPath, -1, 1), ['\\', '/'], true)) {
+        //     $rootPath = substr($rootPath, 0, -1);
+        // }
 
-        if ('/' != substr($fullname, 0, 1)) {
-            $fullname = '/'.$fullname;
-        }
+        // if ('/' != substr($fullname, 0, 1)) {
+        //     $fullname = '/'.$fullname;
+        // }
 
-        return $rootPath.$fullname;
+        // return $rootPath.$fullname;
     }
 
     /**
