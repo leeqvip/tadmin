@@ -68,11 +68,12 @@ http://yourdomain/tadmin
 ## 演示地址
 
 **后台**：
-http://tadmin-skeleton.tech1024.com/tadmin
+http://tadmin.tech1024.com/tadmin
+
 用户名：admin 密码：abc-123
 
 **前台**：
-http://tadmin-skeleton.tech1024.com
+http://tadmin.tech1024.com
 
 ## 协议
 
