@@ -3,11 +3,11 @@
 namespace tadmin\model;
 
 use think\model\Pivot;
-use Db;
+use think\facade\Db;
 
 class ArticleTag extends Pivot
 {
-    protected $table = 'articles_tags';
+    protected $name = 'articles_tags';
 
     public function __construct($data = [], $parent = null, $table = '')
     {
@@ -20,7 +20,7 @@ class ArticleTag extends Pivot
         parent::__construct($data, $parent, $table);
 
         if ($this->table) {
-            $this->table = Db::getConfig('prefix').$this->table;
+            $this->table = Db::getConfig('prefix') . $this->table;
         }
     }
 }

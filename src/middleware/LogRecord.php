@@ -26,7 +26,7 @@ class LogRecord
         $adminer = Auth::user();
         $this->operationLog->create([
             'adminer_id' => $adminer ? $adminer->id : 0,
-            'path' => $request->path(),
+            'path' => $request->baseUrl(),
             'method' => $request->method(),
             'ip' => $request->ip(),
             'input' => var_export($request->param(), true),

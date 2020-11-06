@@ -27,7 +27,7 @@
                                 {/foreach}
                             </select>
                             <div class="am-form-group">
-                                <input name="keywords" type="text" class="am-form-field " placeholder="单页标题" value="{$Request.get.keywords}">
+                                <input name="keywords" type="text" class="am-form-field " placeholder="单页标题" value="{$Request.get ? $Request.get.keywords : ''}">
                             </div>
                             <button type="submit" class="am-btn am-btn-primary am-btn-sm">搜索</button>
                         </form>
@@ -47,20 +47,20 @@
                                 {foreach $articles as $article}
                                 <tr class="gradeX">
                                     <td>{$article.id}</td>
-                                    <td><a href="{:url('tadmin.single')}?category_id={$article.category_id}">{$article.category.name}</a></td>
+                                    <td><a href="{:url('tadmin.single')}?category_id={$article.category_id}">{$article.category.name ?? ''}</a></td>
                                     <td>
                                         <div class="image-title-group">
-                                            <img src="{$article.image}" class="error-nopic" />
-                                            <p><strong>{$article.title}</strong></p>
+                                            <img src="{$article.image ?? ''}" class="error-nopic" />
+                                            <p><strong>{$article.title ?? ''}</strong></p>
                                         </div>
                                     </td>
                                     <td>{$article.created_at}</td>
                                     <td>
                                         <div class="tpl-table-black-operation">
-                                            <a href="{:url('tadmin.single.edit')}?id={$article.id}">
+                                            <a href="{:url('tadmin.single.edit')}?id={$article.id ?? ''}">
                                                 <i class="am-icon-pencil"></i> 编辑
                                             </a>
-                                            <a href="{:url('tadmin.single.delete')}?id={$article.id}" class="tpl-table-black-operation-del">
+                                            <a href="{:url('tadmin.single.delete')}?id={$article.id ?? ''}" class="tpl-table-black-operation-del">
                                                 <i class="am-icon-trash"></i> 删除
                                             </a>
                                         </div>

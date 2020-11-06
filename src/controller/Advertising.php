@@ -4,7 +4,6 @@ namespace tadmin\controller;
 
 use tadmin\model\Advertising as AdvertisingModel;
 use tadmin\model\AdvertisingBlock;
-use tadmin\service\upload\contract\Factory as Uploader;
 use tadmin\support\controller\Controller;
 use think\Request;
 
@@ -44,7 +43,7 @@ class Advertising extends Controller
 
     public function edit(Request $request, AdvertisingBlock $adBlock)
     {
-        $advertising = $this->model->find($request->get('id', 0));
+        $advertising = $this->model->findOrEmpty($request->get('id', 0));
         $adBlocks = $adBlock->select();
 
         return $this->fetch('advertising/edit', [
@@ -53,19 +52,20 @@ class Advertising extends Controller
         ]);
     }
 
-    public function save(Request $request, Uploader $uploader)
+    public function save(Request $request)
     {
         try {
             $data = $request->post();
-            if ($image = $uploader->image('image')) {
-                $data['image'] = $image->getUrlPath();
+            if ($image = $this->file($request, 'image')) {
+                $data['image'] = $this->uploadImage($image);
             }
 
-            $this->model->isUpdate($request->get('id') > 0)->save($data);
+            $this->model->updateOrCreate(['id' => $request->get('id', 0)], $data);
         } catch (\Exception $e) {
             $this->error($e->getMessage());
         }
-        $this->redirect('tadmin.advertising');
+        
+        return $this->redirect('tadmin.advertising');
     }
 
     public function delete(Request $request)

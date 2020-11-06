@@ -5,4 +5,5 @@ return [
     \tadmin\service\auth\contract\Authenticate::class => \tadmin\model\Adminer::class,
     \tadmin\service\auth\guard\contract\Guard::class => \tadmin\service\auth\guard\SessionGuard::class,
     \tadmin\service\auth\contract\Auth::class => \tadmin\service\auth\Auth::class,
+    \think\Paginator::class    =>    \tadmin\paginator\driver\Amazeui::class,
 ];

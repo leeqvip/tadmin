@@ -51,7 +51,7 @@ trait Tree
         $branch = [];
 
         foreach ($nodes as $key => $value) {
-            $value['prefix'] = '|--'.str_repeat('---', $value['depth']);
+            $value['prefix'] = '|--' . str_repeat('---', $value['depth']);
             $children = isset($value['children']) ? $value['children'] : [];
             if ($children) {
                 unset($value['children']);
@@ -81,6 +81,7 @@ trait Tree
         if (empty($nodes)) {
             $nodes = $this->allNodes();
         }
+
         foreach ($nodes as $node) {
             if ($node[$this->parentColumn] == $parentId) {
                 $children = $this->buildNestedArray($nodes, $node[$this->pk], $depth + 1);
@@ -98,6 +99,6 @@ trait Tree
 
     protected function allNodes()
     {
-        return $this->order($this->sortColumn, 'asc')->order($this->pk, 'asc')->all()->toArray();
+        return $this->order($this->sortColumn, 'asc')->order($this->pk, 'asc')->select()->toArray();
     }
 }

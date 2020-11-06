@@ -19,7 +19,7 @@
                                     <div class="am-form-group">
                                         <label for="user-name" class="am-u-sm-12 am-form-label am-text-left">单页标题 <span class="tpl-form-line-small-title">（必填）</span></label>
                                         <div class="am-u-sm-12">
-                                            <input name="title" value="{$article.title}" type="text" class="tpl-form-input am-margin-top-xs" placeholder="请输入标题文字" required>
+                                            <input name="title" value="{$article.title ?? ''}" type="text" class="tpl-form-input am-margin-top-xs" placeholder="请输入标题文字" required>
                                             <small>建议10-20字左右，最长不超过100个字。</small>
                                         </div>
                                     </div>
@@ -28,7 +28,7 @@
                                         <div class="am-u-sm-12  am-margin-top-xs">
                                             <select name="category_id" data-am-selected="{searchBox: 1, maxHeight: 250}" style="display: none;">
                                                 {foreach $parents as $cate}
-                                                <option value="{$cate.id}" {if ($cate.id==$article.category_id)}selected{/if} {if $cate.type!='single' }disabled{/if}>{$cate.prefix}{$cate.name}</option>
+                                                <option value="{$cate.id ?? ''}" {if ($cate.id==($article.category_id ?? ''))}selected{/if} {if $cate.type!='single' }disabled{/if}>{$cate.prefix ?? ''}{$cate.name ?? ''}</option>
                                                 {/foreach}
                                             </select>
                                             <small>每个栏目仅仅可绑定一个单页</small>
@@ -39,7 +39,7 @@
                                         <div class="am-u-sm-12 am-margin-top-xs">
                                             <div class="am-form-group am-form-file">
                                                 <div class="tpl-form-file-img">
-                                                    <img src="{$article.image}" class="am-thumbnail error-nopic" style="max-height: 120px;">
+                                                    <img src="{$article.image ?? ''}" class="am-thumbnail error-nopic" style="max-height: 120px;">
                                                 </div>
                                                 <button type="button" class="am-btn am-btn-danger am-btn-sm ">
                                                     <i class="am-icon-cloud-upload"></i> 添加封面图片</button>
@@ -66,13 +66,13 @@
                                     <div class="am-form-group">
                                         <label class="am-u-sm-12 am-form-label  am-text-left">SEO关键字 </label>
                                         <div class="am-u-sm-12">
-                                            <input name="keywords" value="{$article.keywords}" type="text" class="am-margin-top-xs" placeholder="输入SEO关键字">
+                                            <input name="keywords" value="{$article.keywords ?? ''}" type="text" class="am-margin-top-xs" placeholder="输入SEO关键字">
                                         </div>
                                     </div>
                                     <div class="am-form-group">
                                         <label for="user-intro" class="am-u-sm-12 am-form-label  am-text-left">单页摘要</label>
                                         <div class="am-u-sm-12 am-margin-top-xs">
-                                            <textarea name="summary" class="" rows="3" placeholder="请输入文章摘要">{$article.summary}</textarea>
+                                            <textarea name="summary" class="" rows="3" placeholder="请输入文章摘要">{$article.summary ?? ''}</textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -85,7 +85,7 @@
                                     <div class="am-form-group">
                                         <label for="user-email" class="am-u-sm-12 am-form-label am-text-left">发布时间 <span class="tpl-form-line-small-title">Time</span></label>
                                         <div class="am-u-sm-12">
-                                            <div class="am-input-group date datetimepicker-btn" data-date="{$article.created_at}" data-date-format="yyyy-mm-dd hh:ii:ss">
+                                            <div class="am-input-group date datetimepicker-btn" data-date="{$article.created_at ?? date('Y-m-d H:i:s')}" data-date-format="yyyy-mm-dd hh:ii:ss">
                                                 <input name="created_at" type="text" value="{$article.created_at ?? date('Y-m-d H:i:s')}" class="am-form-field ">
                                                 <span class="am-input-group-label add-on"><i class="icon-th am-icon-calendar"></i></span>
                                             </div>
@@ -97,7 +97,7 @@
                         </div>
                         <div class="am-form-group">
                             <div class="am-u-sm-12 am-u-sm-push-12">
-                                <input name="id" value="{$article.id}" type="hidden">
+                                <input name="id" value="{$article.id ?? ''}" type="hidden">
                                 <button type="submit" class="am-btn am-btn-primary tpl-btn-bg-color-success ">提交</button>
                             </div>
                         </div>

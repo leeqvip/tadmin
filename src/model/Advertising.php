@@ -4,7 +4,7 @@ namespace tadmin\model;
 
 class Advertising extends Model
 {
-    protected $table = 'advertisings';
+    protected $name = 'advertisings';
 
     public function advertisingBlock()
     {

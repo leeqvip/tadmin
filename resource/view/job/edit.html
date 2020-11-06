@@ -19,14 +19,14 @@
                                     <div class="am-form-group">
                                         <label for="user-name" class="am-u-sm-12 am-form-label am-text-left">职位名称 <span class="tpl-form-line-small-title">（必填）</span></label>
                                         <div class="am-u-sm-12">
-                                            <input name="position_name" value="{$job.position_name}" type="text" class="tpl-form-input am-margin-top-xs" placeholder="请输入职位名称" required>
+                                            <input name="position_name" value="{$job.position_name ?? ''}" type="text" class="tpl-form-input am-margin-top-xs" placeholder="请输入职位名称" required>
                                             <small>建议10-20字左右，最长不超过100个字。</small>
                                         </div>
                                     </div>    
                                     <div class="am-form-group">
                                         <label for="user-name" class="am-u-sm-12 am-form-label am-text-left">招聘人数 <span class="tpl-form-line-small-title">（必填）</span></label>
                                         <div class="am-u-sm-12">
-                                            <input name="position_number" value="{$job.position_number}" type="text" class="tpl-form-input am-margin-top-xs" placeholder="请输入职位名称" required>
+                                            <input name="position_number" value="{$job.position_number ?? 1}" type="text" class="tpl-form-input am-margin-top-xs" placeholder="请输入职位名称" required>
                                             <small>建议10-20字左右，最长不超过100个字。</small>
                                         </div>
                                     </div>                                
@@ -34,9 +34,9 @@
                                     <div class="am-form-group">
                                         <label for="user-intro" class="am-u-sm-12 am-form-label  am-text-left">职位描述</label>
                                         <div class="am-u-sm-12 am-margin-top-xs">
-                                            <div class="form-editor" data-name="content">
+                                            <textarea class="form-editor" data-name="content" id="content" name="content">
                                                 {$job.content|raw}
-                                            </div>
+                                            </textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -49,7 +49,7 @@
                                     <div class="am-form-group">
                                         <label for="user-email" class="am-u-sm-12 am-form-label am-text-left">发布时间 <span class="tpl-form-line-small-title">Time</span></label>
                                         <div class="am-u-sm-12">
-                                            <div class="am-input-group date datetimepicker-btn" data-date="{$job.created_at}" data-date-format="yyyy-mm-dd hh:ii:ss">
+                                            <div class="am-input-group date datetimepicker-btn" data-date="{$job.created_at ?? date('Y-m-d H:i:s')}" data-date-format="yyyy-mm-dd hh:ii:ss">
                                                 <input name="created_at" type="text" value="{$job.created_at ?? date('Y-m-d H:i:s')}" class="am-form-field ">
                                                 <span class="am-input-group-label add-on"><i class="icon-th am-icon-calendar"></i></span>
                                             </div>
@@ -72,7 +72,7 @@
                         </div>
                         <div class="am-form-group">
                             <div class="am-u-sm-12 am-u-sm-push-12">
-                                <input name="id" value="{$job.id}" type="hidden">
+                                <input name="id" value="{$job.id ?? 0}" type="hidden">
                                 <button type="submit" class="am-btn am-btn-primary tpl-btn-bg-color-success ">提交</button>
                             </div>
                         </div>

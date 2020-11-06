@@ -1,5 +1,10 @@
 <?php
 
+// return function(){
+
+
+use think\facade\Route;
+
 Route::group('auth', function () {
     Route::get('/passport/login', 'auth\\Passport@login')->name('tadmin.auth.passport.login');
     Route::post('/passport/login', 'auth\\Passport@loginAuth');
@@ -8,9 +13,9 @@ Route::group('auth', function () {
     Route::get('/passport/user', 'auth\\Passport@user')->name('tadmin.auth.passport.user')->middleware('tadmin.admin');
 });
 
-Route::group([
-    'middleware' => ['tadmin.admin'],
-], function () {
+Route::get('captcha', 'Captcha@index')->name('tadmin.captcha');
+
+Route::group(function () {
     Route::group('auth', function () {
         // 管理员
         Route::get('/adminer/delete', 'auth\\Adminer@delete')->name('tadmin.auth.adminer.delete');
@@ -101,4 +106,6 @@ Route::group([
 
     Route::any('/upload/image', 'Upload@image')->name('tadmin.upload.image');
     Route::any('/upload/ueditor', 'Upload@ueditor')->name('tadmin.upload.ueditor');
-});
+})->middleware('tadmin.admin');
+
+// };

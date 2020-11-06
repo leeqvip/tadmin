@@ -14,19 +14,19 @@
                         <div class="am-form-group">
                             <label for="user-name" class="am-u-sm-12 am-form-label am-text-left">简历标题</label>
                             <div class="am-u-sm-12">
-                                {$resume.title}
+                                {$resume.title ?? ''}
                             </div>
                         </div>
                         <div class="am-form-group">
                             <label for="user-name" class="am-u-sm-12 am-form-label am-text-left">内容 </label>
                             <div class="am-u-sm-12">
-                                <pre>{$resume.content}</pre>
+                                <pre>{$resume.content ?? ''}</pre>
                             </div>
                         </div>
                         <div class="am-form-group">
                             <label for="user-name" class="am-u-sm-12 am-form-label am-text-left">投递时间 </label>
                             <div class="am-u-sm-12">
-                                {$resume.created_at}
+                                {$resume.created_at ?? ''}
                             </div>
                         </div>
                     </form>

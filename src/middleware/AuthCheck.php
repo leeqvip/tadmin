@@ -9,7 +9,7 @@ class AuthCheck
     public function handle($request, \Closure $next)
     {
         if (Auth::guard()->guest()) {
-            return redirect('tadmin.auth.passport.login');
+            return redirect((string)url('tadmin.auth.passport.login'), 302);
         }
 
         return $next($request);

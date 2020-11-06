@@ -12,39 +12,49 @@
                 <div class="widget-body am-fr">
                     <form class="am-form tpl-form-border-form" method="post" data-am-validator>
                         <div class="am-form-group">
-                            <label for="user-name" class="am-u-sm-12 am-form-label am-text-left">栏目名称 <span class="tpl-form-line-small-title">（必填）</span></label>
+                            <label for="user-name" class="am-u-sm-12 am-form-label am-text-left">栏目名称 <span
+                                    class="tpl-form-line-small-title">（必填）</span></label>
                             <div class="am-u-sm-12">
-                                <input name="name" value="{$category.name}" type="text" class="tpl-form-input am-margin-top-xs" placeholder="请输入标题文字" required>
+                                <input name="name" value="{$category.name ?? ''}" type="text"
+                                    class="tpl-form-input am-margin-top-xs" placeholder="请输入标题文字" required>
                                 <small>建议10-20字左右，最长不超过100个字。</small>
                             </div>
                         </div>
                         <div class="am-form-group">
-                            <label for="user-name" class="am-u-sm-12 am-form-label am-text-left">栏目类型 <span class="tpl-form-line-small-title">（必选）</span></label>
+                            <label for="user-name" class="am-u-sm-12 am-form-label am-text-left">栏目类型 <span
+                                    class="tpl-form-line-small-title">（必选）</span></label>
                             <div class="am-u-sm-12">
                                 <label class="am-radio-inline">
-                                    <input type="radio" name="type" value="mark" data-am-ucheck {if $category.type=='mark' }checked{/if}> 标识
+                                    <input type="radio" name="type" value="mark" data-am-ucheck {if
+                                        $category.type=='mark' }checked{/if}> 标识
                                 </label>
                                 <label class="am-radio-inline">
-                                    <input type="radio" name="type" value="list" data-am-ucheck required {if $category.type=='list' }checked{/if}> 列表
+                                    <input type="radio" name="type" value="list" data-am-ucheck required {if
+                                        $category.type=='list' }checked{/if}> 列表
                                 </label>
                                 <!-- <label class="am-radio-inline">
                                         <input type="radio" name="type" value="list-img" data-am-ucheck {if $category.type == 'list-img'}checked{/if}> 图文
                                     </label> -->
                                 <label class="am-radio-inline">
-                                    <input type="radio" name="type" value="single" data-am-ucheck {if $category.type=='single' }checked{/if}> 单页
+                                    <input type="radio" name="type" value="single" data-am-ucheck {if
+                                        $category.type=='single' }checked{/if}> 单页
                                 </label>
                                 <label class="am-radio-inline">
-                                    <input type="radio" name="type" value="topic" data-am-ucheck {if $category.type=='topic' }checked{/if}> 专题
+                                    <input type="radio" name="type" value="topic" data-am-ucheck {if
+                                        $category.type=='topic' }checked{/if}> 专题
                                 </label>
                             </div>
                         </div>
                         <div class="am-form-group">
-                            <label for="user-phone" class="am-u-sm-12 am-form-label am-text-left">上级栏目 <span class="tpl-form-line-small-title">（必选）</span></label>
+                            <label for="user-phone" class="am-u-sm-12 am-form-label am-text-left">上级栏目 <span
+                                    class="tpl-form-line-small-title">（必选）</span></label>
                             <div class="am-u-sm-12  am-margin-top-xs">
-                                <select name="parent_id" data-am-selected="{searchBox: 1, maxHeight: 250}" style="display: none;">
+                                <select name="parent_id" data-am-selected="{searchBox: 1, maxHeight: 250}"
+                                    style="display: none;">
                                     <option value="0">顶级栏目</option>
                                     {foreach $parents as $cate}
-                                    <option value="{$cate.id}" {if ($cate.id == $category.parent_id)}selected{/if}>{$cate.prefix}{$cate.name}</option>
+                                    <option value="{$cate.id}" {if ($cate.id==$category.parent_id)}selected{/if}>
+                                        {$cate.prefix}{$cate.name}</option>
                                     {/foreach}
                                 </select>
                             </div>
@@ -52,21 +62,23 @@
                         <div class="am-form-group">
                             <label for="user-name" class="am-u-sm-12 am-form-label am-text-left">内容 </label>
                             <div class="am-u-sm-12">
-                                <textarea name="content" rows="3">{$category.content}</textarea>
+                                <textarea name="content" rows="3">{$category.content ?? ''}</textarea>
                                 <small></small>
                             </div>
                         </div>
                         <div class="am-form-group">
                             <label for="user-name" class="am-u-sm-12 am-form-label am-text-left">排序 </label>
                             <div class="am-u-sm-12">
-                                <input name="sort" value="{$category.sort}" type="text" class="tpl-form-input am-margin-top-xs" placeholder="100">
+                                <input name="sort" value="{$category.sort ?? ''}" type="text"
+                                    class="tpl-form-input am-margin-top-xs" placeholder="100">
                                 <small>按数字升序排列</small>
                             </div>
                         </div>
                         <div class="am-form-group">
                             <div class="am-u-sm-12 am-u-sm-push-12">
-                                <input name="id" value="{$category.id}" type="hidden">
-                                <button type="submit" class="am-btn am-btn-primary tpl-btn-bg-color-success ">提交</button>
+                                <input name="id" value="{$category.id ?? ''}" type="hidden">
+                                <button type="submit"
+                                    class="am-btn am-btn-primary tpl-btn-bg-color-success ">提交</button>
                             </div>
                         </div>
                     </form>

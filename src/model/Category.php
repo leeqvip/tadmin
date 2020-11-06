@@ -6,7 +6,7 @@ class Category extends Model
 {
     use traits\Tree;
 
-    protected $table = 'categorys';
+    protected $name = 'categorys';
 
     /**
      * 数据输出需要追加的属性.

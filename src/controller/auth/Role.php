@@ -28,10 +28,10 @@ class Role extends Controller
 
     public function edit(Request $request, Permission $permission)
     {
-        $role = $this->role->find($request->get('id', 0));
+        $role = $this->role->findOrEmpty($request->get('id', 0));
         $permissions = $permission->select();
-        $permissionsIds = $role ? $role->permissions()->column('id') : [];
-
+        $permissionsIds = $role && !$role->isEmpty() ? $role->permissions()->column('id') : [];
+        
         return $this->fetch('auth/role/edit', [
             'role' => $role,
             'permissions' => $permissions,
@@ -43,8 +43,9 @@ class Role extends Controller
     {
         try {
             $data = $request->post();
-            $role = $this->role->create($data, true, true);
-            $permissionsIds = $role->permissions()->column('id');
+            $role = $this->role->findOrEmpty($data['id'] ?? 0);
+            $role->save($data);
+            $permissionsIds = $role && $role->permissions ? \array_column($role->permissions->toArray(), 'id'): [];
 
             $newPermissionsIds = $request->post('permission_id', []);
             $newPermissionsIds = array_map(function ($item) {
@@ -71,9 +72,10 @@ class Role extends Controller
                 $role->permissions()->detach(array_values($detachPermissionsIds));
             }
         } catch (\Exception $e) {
+            throw $e;
             $this->error('保存失败');
         }
-        $this->redirect('tadmin.auth.role');
+        return $this->redirect('tadmin.auth.role');
     }
 
     public function delete(Request $request)

@@ -4,7 +4,7 @@ namespace tadmin\model;
 
 class Article extends Model
 {
-    protected $table = 'articles';
+    protected $name = 'articles';
 
     protected $append = ['summary_text'];
 
@@ -47,7 +47,7 @@ class Article extends Model
 
     public function category()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class, "category_id");
     }
 
     public function tags()

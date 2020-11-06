@@ -41,7 +41,7 @@
                                     <td>{$nav.prefix}{$nav.title}</td>
                                     <td><code>{$nav.uri}</code></td>
                                     <td><span class="am-badge am-badge-success am-radius">{$nav.sort}</span></td>
-                                    <td>{$nav.created_at}</td>
+                                    <td>{$nav.created_at ?? ''}</td>
                                     <td><span class="show-status" data-status="{$nav.status}"><i class="am-icon-circle"></i></span></td>
                                     <td>
                                         <div class="tpl-table-black-operation">

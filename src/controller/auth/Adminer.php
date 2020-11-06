@@ -4,7 +4,6 @@ namespace tadmin\controller\auth;
 
 use tadmin\model\Adminer as AdminerModel;
 use tadmin\model\Role;
-use tadmin\service\upload\contract\Factory as Uploader;
 use tadmin\support\controller\Controller;
 use think\exception\ValidateException;
 use think\facade\Validate;
@@ -31,14 +30,13 @@ class Adminer extends Controller
 
     public function edit(Request $request, Role $role)
     {
-        $adminer = $this->adminer->find($request->get('id', 0));
+        $adminer = $this->adminer->with("roles")->find($request->get('id', 0));
         $roles = $role->select();
-        $roleIds = $adminer ? $adminer->roles()->column('id') : [];
-
+        $roleIds = $adminer && $adminer->roles ? \array_column($adminer->roles->toArray(), 'id'): [];
         return $this->fetch('auth/adminer/edit', compact('adminer', 'roleIds', 'roles'));
     }
 
-    public function save(Request $request, Uploader $uploader)
+    public function save(Request $request)
     {
         try {
             // $uploader->upload('avatar');
@@ -53,12 +51,12 @@ class Adminer extends Controller
         } catch (\Exception $e) {
             $this->error($e->getMessage());
         }
-        $this->redirect('tadmin.auth.adminer');
+        return $this->redirect('tadmin.auth.adminer');
     }
 
     protected function updateRoles($adminer, $newRoleIds)
     {
-        $roleIds = $adminer->roles()->column('id');
+        $roleIds = $adminer && $adminer->roles ? \array_column($adminer->roles->toArray(), 'id'): [];
 
         $newRoleIds = array_map(function ($item) {
             return (int) $item;
@@ -92,7 +90,7 @@ class Adminer extends Controller
         $this->validateAdminAccount($data);
         $this->validateAdminPassword($data);
 
-        $adminer = $this->adminer->allowField(true)->create($data, true, true);
+        $adminer = $this->adminer->create($data);
 
         if (!$adminer) {
             throw new \Exception('创建管理员失败');
@@ -109,8 +107,8 @@ class Adminer extends Controller
         } else {
             unset($data['admin_password']);
         }
-
-        $adminer = $this->adminer->isUpdate(true)->update($data);
+        $adminer = $this->adminer->find($data['id']);
+        $adminer->save($data);
         if (!$adminer) {
             throw new \Exception('修改管理员失败');
         }
@@ -120,9 +118,8 @@ class Adminer extends Controller
 
     protected function validateAdminAccount(array $data)
     {
-        $validate = Validate::make([
-            'admin_account' => 'require|alphaDash|max:16|unique:adminers',
-        ], [
+        $validate = Validate::rule('admin_account', 'require|alphaDash|max:16|unique:adminers')
+        ->message([
             'admin_account.require' => '登录账号必须',
             'admin_account.alphaDash' => '登录账号只能是字母、数字和下划线_及破折号-',
             'admin_account.max' => '登录账号最多不能超过16个字符',
@@ -136,9 +133,8 @@ class Adminer extends Controller
 
     protected function validateAdminPassword(array $data)
     {
-        $validate = Validate::make([
-            'admin_password' => 'require|alphaDash|confirm|max:16',
-        ], [
+        $validate = Validate::rule('admin_password', 'require|alphaDash|confirm|max:16')
+        ->message([
             'admin_password.require' => '登录密码必须',
             'admin_password.alphaDash' => '登录密码只能是字母、数字和下划线_及破折号-',
             'admin_password.max' => '登录密码最多不能超过16个字符',

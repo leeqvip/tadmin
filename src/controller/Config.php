@@ -32,7 +32,8 @@ class Config extends Controller
         } catch (\Exception $e) {
             return $this->error('保存失败');
         }
-        $this->redirect('tadmin.config');
+
+        return $this->redirect('tadmin.config');
     }
 
     public function add()
@@ -47,6 +48,7 @@ class Config extends Controller
         } catch (\Exception $e) {
             return $this->error('保存失败');
         }
-        $this->redirect('tadmin.config');
+        
+        return $this->redirect('tadmin.config');
     }
 }

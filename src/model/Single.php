@@ -4,7 +4,7 @@ namespace tadmin\model;
 
 class Single extends Model
 {
-    protected $table = 'single';
+    protected $name = 'single';
 
     protected $append = ['summary_text'];
 
@@ -20,6 +20,6 @@ class Single extends Model
 
     public function category()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class, "category_id");
     }
 }

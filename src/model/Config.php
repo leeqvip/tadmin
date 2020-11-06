@@ -4,7 +4,7 @@ namespace tadmin\model;
 
 class Config extends Model
 {
-    protected $table = 'configs';
+    protected $name = 'configs';
 
     public static $configs = [];
 

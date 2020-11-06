@@ -25,14 +25,14 @@
                         <div class="am-form-group">
                             <label for="user-name" class="am-u-sm-12 am-form-label am-text-left">导航名称 <span class="tpl-form-line-small-title">（必填）</span></label>
                             <div class="am-u-sm-12">
-                                <input name="title" value="{$nav.title}" type="text" class="tpl-form-input am-margin-top-xs" placeholder="请输入标题文字" required>
+                                <input name="title" value="{$nav.title ?? ''}" type="text" class="tpl-form-input am-margin-top-xs" placeholder="请输入标题文字" required>
                                 <small>建议10-20字左右，最长不超过100个字。</small>
                             </div>
                         </div>
                         <div class="am-form-group">
                             <label for="user-name" class="am-u-sm-12 am-form-label am-text-left">打开链接 </label>
                             <div class="am-u-sm-12">
-                                <input name="uri" value="{$nav.uri}" type="text" class="tpl-form-input am-margin-top-xs">
+                                <input name="uri" value="{$nav.uri ?? ''}" type="text" class="tpl-form-input am-margin-top-xs">
                             </div>
                         </div>
                         <div class="am-form-group">
@@ -50,7 +50,7 @@
                         <div class="am-form-group">
                             <label for="user-name" class="am-u-sm-12 am-form-label am-text-left">排序 </label>
                             <div class="am-u-sm-12">
-                                <input name="sort" value="{$nav.sort}" type="text" class="tpl-form-input am-margin-top-xs" placeholder="100">
+                                <input name="sort" value="{$nav.sort ?? ''}" type="text" class="tpl-form-input am-margin-top-xs" placeholder="100">
                                 <small>按数字升序排列</small>
                             </div>
                         </div>
@@ -67,7 +67,7 @@
                         </div>
                         <div class="am-form-group">
                             <div class="am-u-sm-12 am-u-sm-push-12">
-                                <input name="id" value="{$nav.id}" type="hidden">
+                                <input name="id" value="{$nav.id ?? ''}" type="hidden">
                                 <button type="submit" class="am-btn am-btn-primary tpl-btn-bg-color-success ">提交</button>
                             </div>
                         </div>

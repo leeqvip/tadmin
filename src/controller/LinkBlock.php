@@ -27,7 +27,7 @@ class LinkBlock extends Controller
 
     public function edit(Request $request)
     {
-        $block = $this->model->find($request->get('id', 0));
+        $block = $this->model->findOrEmpty($request->get('id', 0));
 
         return $this->fetch('link/block/edit', [
             'block' => $block,
@@ -39,11 +39,12 @@ class LinkBlock extends Controller
         try {
             $data = $request->post();
 
-            $this->model->isUpdate($request->get('id') > 0)->save($data);
+            $this->model->updateOrCreate(['id' => $request->get('id', 0)], $data);
         } catch (\Exception $e) {
             $this->error($e->getMessage());
         }
-        $this->redirect('tadmin.link.block');
+
+        return $this->redirect('tadmin.link.block');
     }
 
     public function delete(Request $request)

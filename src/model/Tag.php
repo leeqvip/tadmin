@@ -4,7 +4,7 @@ namespace tadmin\model;
 
 class Tag extends Model
 {
-    protected $table = 'tags';
+    protected $name = 'tags';
 
     public function articles()
     {

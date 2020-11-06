@@ -11,21 +11,21 @@ if (!function_exists('script_path')) {
             $scriptName = $_SERVER['SCRIPT_FILENAME'];
         }
 
-        return realpath(dirname($scriptName)).'/';
+        return realpath(dirname($scriptName)) . '/';
     }
 }
 
 if (!function_exists('app_path')) {
     function app_path($path = '')
     {
-        return env('app_path').ltrim($path, '/');
+        return env('app_path') . ltrim($path, '/');
     }
 }
 
 if (!function_exists('public_path')) {
     function public_path($path = '')
     {
-        return script_path().ltrim($path, '/');
+        return script_path() . ltrim($path, '/');
         // return app_path('../public/').ltrim($path, '/');
     }
 }
@@ -33,28 +33,28 @@ if (!function_exists('public_path')) {
 if (!function_exists('admin_path')) {
     function admin_path($path = '')
     {
-        return __DIR__.'/'.ltrim($path, '/');
+        return __DIR__ . '/' . ltrim($path, '/');
     }
 }
 
 if (!function_exists('admin_config_path')) {
     function admin_config_path($path = '')
     {
-        return admin_path('config/').ltrim($path, '/');
+        return admin_path('config/') . ltrim($path, '/');
     }
 }
 
 if (!function_exists('admin_route_path')) {
     function admin_route_path($path = '')
     {
-        return admin_path('route/').ltrim($path, '/');
+        return admin_path('route/') . ltrim($path, '/');
     }
 }
 
 if (!function_exists('admin_view_path')) {
     function admin_view_path($path = '')
     {
-        return admin_path('resource/view/').ltrim($path, '/');
+        return admin_path('resource/view/') . ltrim($path, '/');
     }
 }
 
@@ -85,7 +85,11 @@ if (!function_exists('array_deep_merge')) {
     }
 }
 
-\think\Console::addDefaultCommands([
-    'tadmin:init' => \tadmin\command\Init::class,
-    'tadmin:migrate:run' => \tadmin\command\Migrate::class,
-]);
+
+
+if (!function_exists('redirect_route')) {
+    function redirect_route(string $route = '', int $code = 302)
+    {
+        return redirect((string)url($route), $code);
+    }
+}

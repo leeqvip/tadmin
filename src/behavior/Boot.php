@@ -61,8 +61,8 @@ class Boot
             'tadmin',
         ];
         foreach ($configFileNames as $fileName) {
-            if (is_file(admin_config_path($fileName.'.php'))) {
-                $file = admin_config_path($fileName.'.php');
+            if (is_file(admin_config_path($fileName . '.php'))) {
+                $file = admin_config_path($fileName . '.php');
                 $configName = pathinfo($file, PATHINFO_FILENAME);
                 $config = $this->app->config->pull($configName);
 
@@ -107,7 +107,7 @@ class Boot
         $files = scandir($routePath);
         foreach ($files as $file) {
             if (strpos($file, '.php')) {
-                $filename = $routePath.$file;
+                $filename = $routePath . $file;
                 // 导入路由配置
                 Route::group($this->name, function () use ($filename) {
                     $rules = include_once $filename;

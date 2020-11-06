@@ -4,7 +4,7 @@ namespace tadmin\model;
 
 class OperationLog extends Model
 {
-    protected $table = 'operation_logs';
+    protected $name = 'operation_logs';
 
     public function getBrowserAttr()
     {

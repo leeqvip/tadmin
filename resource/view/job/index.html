@@ -22,7 +22,7 @@
                     <div class="am-u-sm-12 am-u-md-12 am-u-lg-6">
                         <form class="am-form-inline tpl-form-border-form cl-p am-fr" role="form">
                             <div class="am-form-group">
-                                <input name="keywords" type="text" class="am-form-field " placeholder="关键词" value="{$Request.get.keywords}">
+                                <input name="keywords" type="text" class="am-form-field " placeholder="关键词" value="{$Request.get ? $Request.get.keywords : ''}">
                             </div>
                             <button type="submit" class="am-btn am-btn-primary am-btn-sm">搜索</button>
                         </form>
@@ -45,11 +45,11 @@
                                     <td>{$job.id}</td>                                    
                                     <td>
                                         <div class="image-title-group">                                            
-                                            <p><strong>{$job.position_name}</strong>
+                                            <p><strong>{$job.position_name ?? ''}</strong>
                                         </div>
                                     </td>
-                                    <td>{$job.position_number}</td>
-                                    <td>{$job.created_at}</td>
+                                    <td>{$job.position_number ?? 0}</td>
+                                    <td>{$job.created_at ?? ''}</td>
                                     <td><span class="show-status" data-status="{$job.status}"><i class="am-icon-circle"></i></span></td>
                                     <td>
                                         <div class="tpl-table-black-operation">

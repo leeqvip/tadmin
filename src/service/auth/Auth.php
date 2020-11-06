@@ -52,11 +52,11 @@ class Auth implements contract\Auth
 
     protected function validate(array $data = [])
     {
-        $validate = Validate::make([
+        $validate = Validate::rule([
             'admin_account' => 'require|max:25',
             'admin_password' => 'require|max:25',
-            'captcha|验证码' => 'require|captcha',
-        ], [
+            'captcha|验证码' => 'require|captcha'
+        ])->message([
             'admin_account.require' => '登录名必须',
             'admin_account.max' => '登录名最多不能超过25个字符',
             'admin_password.require' => '密码必须',

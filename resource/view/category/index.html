@@ -14,7 +14,9 @@
                         <div class="am-form-group">
                             <div class="am-btn-toolbar">
                                 <div class="am-btn-group am-btn-group-xs">
-                                    <a href="{:url('tadmin.category.edit')}" class="am-btn am-btn-default am-btn-success"><span class="am-icon-plus"></span> 新增</a>
+                                    <a href="{:url('tadmin.category.edit')}"
+                                        class="am-btn am-btn-default am-btn-success"><span class="am-icon-plus"></span>
+                                        新增</a>
                                 </div>
                             </div>
                         </div>
@@ -35,18 +37,20 @@
                                 {foreach $categorys as $category}
                                 <tr class="gradeX">
                                     <td>{$category.id}</td>
-                                    <td><span class="cate-type am-badge am-radius" data-type="{$category.type}">{$category.type_text}</span></td>
+                                    <td><span class="cate-type am-badge am-radius"
+                                            data-type="{$category.type}">{$category.type_text}</span></td>
                                     <td>{$category.prefix}{$category.name}</td>
                                     <td><span class="am-badge am-badge-success am-radius">{$category.sort}</span></td>
-                                    <td>{$category.created_at}</td>
+                                    <td>{$category.created_at ?? ''}</td>
                                     <td>
                                         <div class="tpl-table-black-operation">
                                             <a href="{:url('tadmin.category.edit')}?id={$category.id}">
-                                                    <i class="am-icon-pencil"></i> 编辑
-                                                </a>
-                                            <a href="{:url('tadmin.category.delete')}?id={$category.id}" class="tpl-table-black-operation-del">
-                                                    <i class="am-icon-trash"></i> 删除
-                                                </a>
+                                                <i class="am-icon-pencil"></i> 编辑
+                                            </a>
+                                            <a href="{:url('tadmin.category.delete')}?id={$category.id}"
+                                                class="tpl-table-black-operation-del">
+                                                <i class="am-icon-trash"></i> 删除
+                                            </a>
                                         </div>
                                     </td>
                                 </tr>
@@ -63,16 +67,16 @@
 {/block}
 {block name="footer"}
 <script type="text/javascript">
-    $(document).ready(function() {
-        $(".cate-type").each(function(index, el) {
+    $(document).ready(function () {
+        $(".cate-type").each(function (index, el) {
             var dataType = $(this).attr('data-type')
-            if(dataType == 'list'){
+            if (dataType == 'list') {
                 $(this).addClass('am-badge-primary');
-            }else if(dataType == 'list-img'){
+            } else if (dataType == 'list-img') {
                 $(this).addClass('am-badge-secondary');
-            }else if(dataType == 'single'){
+            } else if (dataType == 'single') {
                 $(this).addClass('am-badge-danger');
-            }else if(dataType == 'topic'){
+            } else if (dataType == 'topic') {
                 $(this).addClass('am-badge-warning');
             }
         });

@@ -6,11 +6,11 @@ use tadmin\service\auth\contract\Authenticate;
 
 class Adminer extends Model implements Authenticate
 {
-    protected $table = 'adminers';
+    protected $name = 'adminers';
 
     public function roles()
     {
-        return $this->belongsToMany(Role::class, AdminerRole::class);
+        return $this->belongsToMany(Role::class, AdminerRole::class, "role_id", "adminer_id");
     }
 
     public function setAdminPasswordAttr($value)

@@ -4,7 +4,7 @@ namespace tadmin\model;
 
 class Job extends Model
 {
-    protected $table = 'jobs';
+    protected $name = 'jobs';
 
     protected $append = ['summary_text'];
 

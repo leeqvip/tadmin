@@ -27,7 +27,7 @@ class Nav extends Controller
 
     public function edit(Request $request)
     {
-        $nav = $this->model->find($request->get('id', 0));
+        $nav = $this->model->findOrEmpty($request->get('id', 0));
 
         $parents = $this->model->flatTree();
 
@@ -45,11 +45,12 @@ class Nav extends Controller
         try {
             $data = $request->post();
 
-            $res = $this->model->isUpdate($request->get('id') > 0)->save($data);
+            $res = $this->model->updateOrCreate(['id' => $request->get('id', 0)], $data);
         } catch (\Exception $e) {
             $this->error('保存失败');
         }
-        $this->redirect('tadmin.nav');
+
+        return $this->redirect('tadmin.nav');
     }
 
     public function delete(Request $request)

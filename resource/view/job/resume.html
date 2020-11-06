@@ -27,11 +27,11 @@
                                     <td>{$resume.id}</td>                                    
                                     <td>
                                         <div class="image-title-group">                                            
-                                            <p><strong>{$resume.title}</strong>
+                                            <p><strong>{$resume.title ?? ''}</strong>
                                         </div>
                                     </td>
-                                    <td>{$resume.summary_text}</td>
-                                    <td>{$resume.created_at}</td>                                    
+                                    <td>{$resume.summary_text ?? ''}</td>
+                                    <td>{$resume.created_at ?? ''}</td>                                    
                                     <td><a href="{:url('tadmin.job.resume.item')}?id={$resume.id}">
                                                 <i class="am-icon-pencil"></i> 查看
                                             </a></td>

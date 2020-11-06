@@ -4,11 +4,19 @@ namespace tadmin\middleware;
 
 use tadmin\controller\Transfer;
 use tadmin\service\auth\facade\Auth;
-use Casbin;
+use tauthz\facade\Enforcer;
+use think\App;
 
 class PermissionCheck
 {
+    protected $app;
+
     protected $request;
+
+    public function __construct(App $app)
+    {
+        $this->app = $app;
+    }
 
     public function handle($request, \Closure $next)
     {
@@ -22,7 +30,9 @@ class PermissionCheck
             return $next($request);
         }
 
-        if (true !== Casbin::enforce('adminer.'.$adminer->id, $this->request->method(true), $this->parseCurrentPath())) {
+        $enforcer = $this->app->get('tadmin.enforcer');
+
+        if (true !== $enforcer->enforce('adminer.' . $adminer->id, $this->request->method(true), $this->parseCurrentPath())) {
             return controller(Transfer::class, '')->message('权限不足');
             // throw new \Exception('权限不足');
         }
@@ -52,7 +62,7 @@ class PermissionCheck
 
     public function parseCurrentPath()
     {
-        $currentPath = ltrim(trim($this->request->path(), '/'), 'tadmin');
+        $currentPath = ltrim(trim($this->request->baseUrl(), '/'), 'tadmin');
         if ('/' !== $currentPath) {
             $currentPath = rtrim($currentPath, '/');
         }

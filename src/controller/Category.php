@@ -27,7 +27,7 @@ class Category extends Controller
 
     public function edit(Request $request)
     {
-        $category = $this->category->find($request->get('id', 0));
+        $category = $this->category->findOrEmpty($request->get('id', 0));
 
         $parents = $this->category->flatTree();
 
@@ -50,12 +50,12 @@ class Category extends Controller
             }
 
             $data['parent_path'] = isset($parent) ? $parent['parent_path'].$parent['id'].',' : '0,';
-
-            $res = $this->category->isUpdate($request->get('id') > 0)->save($data);
+            $cate = $this->category->findOrEmpty($data['id']);
+            $cate->save($data);
         } catch (\Exception $e) {
             $this->error('保存失败');
         }
-        $this->redirect('tadmin.category');
+        return $this->redirect('tadmin.category');
     }
 
     public function delete(Request $request)

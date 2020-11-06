@@ -6,5 +6,5 @@ class Menu extends Model
 {
     use traits\Tree;
 
-    protected $table = 'menus';
+    protected $name = 'menus';
 }

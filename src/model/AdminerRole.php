@@ -3,13 +3,13 @@
 namespace tadmin\model;
 
 use think\model\Pivot;
-use Db;
+use think\facade\Db;
 
 class AdminerRole extends Pivot
 {
     use traits\ModelHelper;
 
-    protected $table = 'adminers_roles';
+    protected $name = 'adminers_roles';
 
     public function __construct($data = [], $parent = null, $table = '')
     {
@@ -22,7 +22,7 @@ class AdminerRole extends Pivot
         parent::__construct($data, $parent, $table);
 
         if ($this->table) {
-            $this->table = Db::getConfig('prefix').$this->table;
+            $this->table = Db::getConfig('prefix') . $this->table;
         }
     }
 }

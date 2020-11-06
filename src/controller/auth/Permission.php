@@ -27,7 +27,7 @@ class Permission extends Controller
 
     public function edit(Request $request)
     {
-        $permission = $this->permission->find($request->get('id', 0));
+        $permission = $this->permission->findOrEmpty($request->get('id', 0));
 
         return $this->fetch('auth/permission/edit', [
             'permission' => $permission,
@@ -39,11 +39,13 @@ class Permission extends Controller
         try {
             $data = $request->post();
 
-            $res = $this->permission->isUpdate($request->get('id') > 0)->save($data);
+            $permission = $this->permission->findOrEmpty($data['id']);
+            $permission->save($data);
         } catch (\Exception $e) {
+            throw $e;
             $this->error('保存失败');
         }
-        $this->redirect('tadmin.auth.permission');
+        return $this->redirect('tadmin.auth.permission');
     }
 
     public function delete(Request $request)

@@ -3,21 +3,18 @@
 </h1>
 
 <p align="center">
-  <strong>一个基于ThinkPHP5.1+和AmazeUI的快速后台开发框架</strong>
+  <strong>一个基于ThinkPHP的一款非侵入式后台开发框架！</strong>
 </p>
 
-<p align="center">
-  <a href="https://styleci.io/repos/161045623">
-    <img src="https://styleci.io/repos/161045623/shield?branch=master" alt="StyleCI">
+<p align="center"> 
+   <a href="https://packagist.org/packages/leeqvip/tadmin">
+      <img src="https://poser.pugx.org/leeqvip/tadmin/v/stable.png" alt="Latest Stable Version">
   </a>   
-   <a href="https://packagist.org/packages/techone/tadmin">
-      <img src="https://poser.pugx.org/techone/tadmin/v/stable.png" alt="Latest Stable Version">
+  <a href="https://packagist.org/packages/leeqvip/tadmin">
+      <img src="https://poser.pugx.org/leeqvip/tadmin/downloads.png" alt="Total Downloads">
   </a>   
-  <a href="https://packagist.org/packages/techone/tadmin">
-      <img src="https://poser.pugx.org/techone/tadmin/downloads.png" alt="Total Downloads">
-  </a>   
-  <a href="https://packagist.org/packages/techone/tadmin">
-    <img src="https://poser.pugx.org/techone/tadmin/license.png" alt="License">
+  <a href="https://packagist.org/packages/leeqvip/tadmin">
+    <img src="https://poser.pugx.org/leeqvip/tadmin/license.png" alt="License">
   </a>
 </p>
 
@@ -29,34 +26,33 @@
 
 ## 安装
 
-最方便的安装方式就是使用Composer ( https://getcomposer.org/ )，在这之前**务必**先搭建好thinkphp5.1项目
+最方便的安装方式就是使用Composer ( https://getcomposer.org/ )，在这之前**务必**先搭建好thinkphp项目
 
-1、安装 Tadmin :
+1、安装Tadmin
 
 ```
-composer require techone/tadmin
+composer require leeqvip/tadmin
 ```
 
-2、初始化和数据迁移
+2、注册服务
+
+注册服务，在应用的全局公共文件`service.php`中加入：
+
+```php
+return [
+    // ...
+
+    tadmin\TadminService::class,
+];
+```
+
+3、执行初始化和数据库迁移：
+
+**确保数据库配置信息正确**）
 
 ```
 php think tadmin:init
 php think tadmin:migrate:run
-```
-
-3、配置
-
-添加行为在 `application/tags.php`
-
-```
-return [
-
-    'app_init'     => [
-        \tadmin\behavior\Boot::class,
-    ],
-
-    // ...
-];
 ```
 
 ## 进入tadmin后台
@@ -68,12 +64,12 @@ http://yourdomain/tadmin
 ## 演示地址
 
 **后台**：
-http://tadmin.v.tech1024.com/tadmin
+http://tadmin.tech1024.com/tadmin
 
 用户名：admin 密码：abc-123
 
 **前台**：
-http://tadmin.v.tech1024.com
+http://tadmin.tech1024.com
 
 ## 协议
 
@@ -82,5 +78,5 @@ http://tadmin.v.tech1024.com
 ## 联系
 
 有问题或者功能建议，请联系我们或者提交PR:
-- https://github.com/techoner/tadmin/issues
-- techlee@qq.com
+- https://github.com/leeqvip/tadmin/issues
+- leeqvip@gmail.com

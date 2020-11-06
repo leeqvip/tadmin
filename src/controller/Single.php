@@ -4,7 +4,6 @@ namespace tadmin\controller;
 
 use tadmin\model\Category;
 use tadmin\model\Single as SingleModel;
-use tadmin\service\upload\contract\Factory as Uploader;
 use tadmin\support\controller\Controller;
 use think\Request;
 
@@ -48,7 +47,7 @@ class Single extends Controller
 
     public function edit(Request $request, Category $category)
     {
-        $article = $this->single->find($request->get('id', 0));
+        $article = $this->single->findOrEmpty($request->get('id', 0));
         $parents = $category->flatTree();
 
         return $this->fetch('single/edit', [
@@ -57,12 +56,12 @@ class Single extends Controller
         ]);
     }
 
-    public function save(Request $request, Uploader $uploader)
+    public function save(Request $request)
     {
         try {
             $data = $request->post();
-            if ($image = $uploader->image('image')) {
-                $data['image'] = $image->getUrlPath();
+            if ($image = $this->file($request, 'image')) {
+                $data['image'] = $this->uploadImage($image);
             }
 
             $parent = $this->category->find($data['category_id']);
@@ -80,11 +79,12 @@ class Single extends Controller
 
             $data['category_parent_path'] = isset($parent) ? $parent['parent_path'].$parent['id'].',' : '0,';
 
-            $this->single->isUpdate($request->get('id') > 0)->save($data);
+            $this->single->updateOrCreate(['id' => $request->get('id', 0)], $data);
         } catch (\Exception $e) {
             $this->error($e->getMessage());
         }
-        $this->redirect('tadmin.single');
+        
+        return $this->redirect('tadmin.single');
     }
 
     public function delete(Request $request)

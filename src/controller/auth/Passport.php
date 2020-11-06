@@ -42,7 +42,7 @@ class Passport extends Controller
         try {
             $this->auth->login($request);
 
-            return redirect('tadmin.index');
+            return $this->redirect('tadmin.index');
         } catch (\Exception $e) {
             $this->error($e->getMessage());
         }
@@ -52,6 +52,6 @@ class Passport extends Controller
     {
         $this->auth->logout();
 
-        return redirect('tadmin.auth.passport.login');
+        return $this->redirect('tadmin.auth.passport.login');
     }
 }

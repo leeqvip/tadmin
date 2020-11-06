@@ -46,6 +46,11 @@ class Index extends Controller
 
     protected function latestRelease()
     {
+
+       $articles = $this->article->with('category')->order('id', 'desc')->limit(6)->select();
+        foreach ($articles         as $key => $value) {
+            // dump($value->category);die;
+        }
         return $this->article->with('category')->order('id', 'desc')->limit(6)->select();
     }
 }

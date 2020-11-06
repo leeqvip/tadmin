@@ -28,7 +28,7 @@
                                 {/foreach}
                             </select>
                             <div class="am-form-group">
-                                <input name="keywords" type="text" class="am-form-field " placeholder="文章标题" value="{$Request.get.keywords}">
+                                <input name="keywords" type="text" class="am-form-field " placeholder="文章标题" value="{$Request.get ? $Request.get.keywords : ''}">
                             </div>
                             <button type="submit" class="am-btn am-btn-primary am-btn-sm">搜索</button>
                         </form>
@@ -52,11 +52,11 @@
                                     <td>{$ad.advertisingBlock.name}</a></td>
                                     <td>
                                         <div class="image-title-group">
-                                            <img src="{$ad.image}" class="error-nopic" />
-                                            <p><strong>{$ad.title}</strong></p>
+                                            <img src="{$ad.image ?? ''}" class="error-nopic" />
+                                            <p><strong>{$ad.title ?? ''}</strong></p>
                                         </div>
                                     </td>
-                                    <td>{$ad.created_at}</td>
+                                    <td>{$ad.created_at ?? ''}</td>
                                     <td><span class="show-status" data-status="{$ad.status}"><i class="am-icon-circle"></i></span></td>
                                     <td>
                                         <div class="tpl-table-black-operation">

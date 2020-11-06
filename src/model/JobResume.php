@@ -4,7 +4,7 @@ namespace tadmin\model;
 
 class JobResume extends Model
 {
-    protected $table = 'job_resumes';
+    protected $name = 'job_resumes';
 
     protected $append = ['summary_text'];
 

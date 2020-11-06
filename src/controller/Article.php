@@ -6,7 +6,6 @@ use tadmin\model\Article as ArticleModel;
 use tadmin\model\ArticleTag;
 use tadmin\model\Category;
 use tadmin\model\Tag;
-use tadmin\service\upload\contract\Factory as Uploader;
 use tadmin\support\controller\Controller;
 use think\Request;
 
@@ -53,7 +52,7 @@ class Article extends Controller
 
     public function edit(Request $request, Tag $tag)
     {
-        $article = $this->article->find($request->get('id', 0));
+        $article = $this->article->findOrEmpty($request->get('id', 0));
         $parents = $this->category->flatTree();
         $tags = $tag->select();
 
@@ -64,14 +63,14 @@ class Article extends Controller
         ]);
     }
 
-    public function save(Request $request, Uploader $uploader)
+    public function save(Request $request)
     {
         try {
             $data = $request->post();
-            if ($image = $uploader->image('image')) {
-                $data['image'] = $image->getUrlPath();
+            
+            if ($image = $this->file($request, 'image')) {
+                $data['image'] = $this->uploadImage($image);
             }
-
             if (!empty($data['category_id'])) {
                 $parent = $this->category->find($data['category_id']);
                 if (!$parent) {
@@ -95,7 +94,8 @@ class Article extends Controller
         } catch (\Exception $e) {
             $this->error($e->getMessage());
         }
-        $this->redirect('tadmin.article');
+        
+        return $this->redirect('tadmin.article');
     }
 
     public function delete(Request $request)

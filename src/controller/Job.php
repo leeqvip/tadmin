@@ -25,7 +25,7 @@ class Job extends Controller
 
         $jobs = $this->job
             ->when($data['keywords'], function ($query) use ($data) {
-                $query->whereLike('position', '%'.$data['keywords'].'%');
+                $query->whereLike('position_name', '%'.$data['keywords'].'%');
             })
             ->order('id', 'desc')
             ->paginate([
@@ -39,7 +39,7 @@ class Job extends Controller
 
     public function edit(Request $request)
     {
-        $job = $this->job->find($request->get('id', 0));
+        $job = $this->job->findOrEmpty($request->get('id', 0));
 
         return $this->fetch('job/edit', [
             'job' => $job,
@@ -51,11 +51,12 @@ class Job extends Controller
         try {
             $data = $request->post();
 
-            $job = $this->job->create($data, true, true);
+            $job = $this->job->updateOrCreate(['id' => $request->get('id', 0)], $data);
         } catch (\Exception $e) {
             $this->error($e->getMessage());
         }
-        $this->redirect('tadmin.job');
+
+        return $this->redirect('tadmin.job');
     }
 
     public function delete(Request $request)
@@ -81,7 +82,7 @@ class Job extends Controller
 
     public function resumeItem(Request $request, JobResume $jobResume)
     {
-        $resume = $jobResume->find($request->get('id', 0));
+        $resume = $jobResume->findOrEmpty($request->get('id', 0));
 
         return $this->fetch('job/resumeItem', [
             'resume' => $resume,
