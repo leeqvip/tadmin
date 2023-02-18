@@ -4,10 +4,11 @@ namespace tadmin\middleware;
 
 use tadmin\controller\Transfer;
 use tadmin\service\auth\facade\Auth;
+use tadmin\support\controller\Controller;
 use tauthz\facade\Enforcer;
 use think\App;
 
-class PermissionCheck
+class PermissionCheck extends Controller
 {
     protected $app;
 
@@ -15,7 +16,7 @@ class PermissionCheck
 
     public function __construct(App $app)
     {
-        $this->app = $app;
+        parent::__construct($app);
     }
 
     public function handle($request, \Closure $next)
@@ -33,8 +34,7 @@ class PermissionCheck
         $enforcer = $this->app->get('tadmin.enforcer');
 
         if (true !== $enforcer->enforce('adminer.' . $adminer->id, $this->request->method(true), $this->parseCurrentPath())) {
-            return controller(Transfer::class, '')->message('权限不足');
-            // throw new \Exception('权限不足');
+            return $this->error("权限不足");
         }
 
         return $next($request);
