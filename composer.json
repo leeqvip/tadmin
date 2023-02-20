@@ -18,7 +18,6 @@
         "topthink/think-migration": "^3.0",
         "topthink/think-captcha": "^3.0",
         "league/flysystem": "^1.0",
-        "techone/support": "0.*",
         "casbin/think-authz": "^1.0",
         "topthink/think-view": "^1.0"
     },
