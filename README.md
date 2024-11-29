@@ -3,18 +3,18 @@
 </h1>
 
 <p align="center">
-  <strong>一个基于ThinkPHP的一款非侵入式后台开发框架！</strong>
+  <strong>一个基于 ThinkPH P的一款非侵入式后台开发框架！</strong>
 </p>
 
 <p align="center"> 
    <a href="https://packagist.org/packages/leeqvip/tadmin">
-      <img src="https://poser.pugx.org/leeqvip/tadmin/v/stable.png" alt="Latest Stable Version">
+      <img src="https://poser.pugx.org/leeqvip/tadmin/v/stable" alt="Latest Stable Version">
   </a>   
   <a href="https://packagist.org/packages/leeqvip/tadmin">
-      <img src="https://poser.pugx.org/leeqvip/tadmin/downloads.png" alt="Total Downloads">
+      <img src="https://poser.pugx.org/leeqvip/tadmin/downloads" alt="Total Downloads">
   </a>   
   <a href="https://packagist.org/packages/leeqvip/tadmin">
-    <img src="https://poser.pugx.org/leeqvip/tadmin/license.png" alt="License">
+    <img src="https://poser.pugx.org/leeqvip/tadmin/license" alt="License">
   </a>
 </p>
 
