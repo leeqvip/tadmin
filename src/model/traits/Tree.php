@@ -32,9 +32,11 @@ trait Tree
             $tree = $this->toTree();
         }
 
+        $pk = $this->getPk();
+
         foreach ($tree as $key => $value) {
             $children = isset($value['children']) ? $value['children'] : [];
-            if ($value['id'] == $parentId) {
+            if ($value[$pk] == $parentId) {
                 return $children;
             }
             $this->getChildrenNodes($parentId, $children);
@@ -82,9 +84,11 @@ trait Tree
             $nodes = $this->allNodes();
         }
 
+        $pk = $this->getPk();
+
         foreach ($nodes as $node) {
             if ($node[$this->parentColumn] == $parentId) {
-                $children = $this->buildNestedArray($nodes, $node[$this->pk], $depth + 1);
+                $children = $this->buildNestedArray($nodes, $node[$pk], $depth + 1);
 
                 if ($children) {
                     $node['children'] = $children;
@@ -99,6 +103,6 @@ trait Tree
 
     protected function allNodes()
     {
-        return $this->order($this->sortColumn, 'asc')->order($this->pk, 'asc')->select()->toArray();
+        return $this->order($this->sortColumn, 'asc')->order($this->getPk(), 'asc')->select()->toArray();
     }
 }

@@ -33,7 +33,7 @@ class TadminService extends Service
             $adapter = $config['adapter'];
             $model = new Model();
             $model->loadModel($config['model_config_path']);
-            return new Enforcer($model, app($adapter), false);
+            return new Enforcer($model, app($adapter), null, false);
         });
     }
 

@@ -8,6 +8,12 @@ class Captcha extends Controller
 {
     public function index()
     {
-        return \think\captcha\facade\Captcha::create();
+        $oldLevel = error_reporting();
+        error_reporting($oldLevel & ~E_DEPRECATED);
+        try {
+            return \think\captcha\facade\Captcha::create();
+        } finally {
+            error_reporting($oldLevel);
+        }
     }
 }

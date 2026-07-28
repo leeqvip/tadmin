@@ -7,6 +7,8 @@ use think\facade\Db;
 
 abstract class Model extends Base
 {
+    protected $table;
+
     protected $mapping = [];
 
     protected $autoWriteTimestamp = 'datetime';

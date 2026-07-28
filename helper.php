@@ -61,7 +61,7 @@ if (!function_exists('admin_view_path')) {
 if (!function_exists('site_config')) {
     function site_config($key)
     {
-        return Config::get($key);
+        return Config::getValue($key);
     }
 }
 

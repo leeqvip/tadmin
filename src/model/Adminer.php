@@ -30,7 +30,7 @@ class Adminer extends Model implements Authenticate
 
     public function getAuthIdentifier()
     {
-        return $this->{$this->pk};
+        return $this->{$this->getPk()};
     }
 
     public function retrieveByIdentifier($identifier)

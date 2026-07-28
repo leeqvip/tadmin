@@ -8,7 +8,7 @@ class Config extends Model
 
     public static $configs = [];
 
-    public static function get($key)
+    public static function getValue($key)
     {
         if (isset(self::$configs[$key])) {
             return self::$configs[$key];
