@@ -88,7 +88,7 @@ class Article extends Controller
                 ArticleTag::create([
                     'article_id' => $article->id,
                     'tag_id' => $tag,
-                ], true, true);
+                ], [], true);
             }
             ArticleTag::where('article_id', $article->id)->whereNotIn('tag_id', $tags)->delete();
         } catch (\Exception $e) {

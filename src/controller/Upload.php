@@ -3,13 +3,12 @@
 namespace  tadmin\controller;
 
 use tadmin\support\controller\Controller;
-use tadmin\service\upload\contract\Factory as FactoryUploader;
 use think\Request;
 use think\facade\Config;
 
 class Upload extends Controller
 {
-    public function image(Request $request, FactoryUploader $uploader)
+    public function image(Request $request)
     {
         $files = $request->file();
 

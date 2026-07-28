@@ -14,11 +14,12 @@
         }
     ],
     "require": {
-        "php": ">=8.0.0",
+        "php": ">=8.0.2",
+        "topthink/framework": "^8.1",
         "topthink/think-migration": "^3.1",
         "topthink/think-captcha": "^3.0",
-        "league/flysystem": "^2.0|^3.0",
-        "casbin/think-authz": "^2.0.1",
+        "league/flysystem": "^2.5|^3.35",
+        "casbin/think-authz": "^2.0",
         "topthink/think-view": "^2.0"
     },
     "autoload": {
